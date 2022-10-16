@@ -1,0 +1,14 @@
+{
+  "name": "bloom",
+  "packageManager": "yarn@3.2.4",
+  "scripts": {
+    "lint": "eslint",
+		"serve": "dead-server --host=localhost"
+  },
+  "devDependencies": {
+    "dead-server": "https://github.com/gaoDean/dead-server.git",
+    "eslint": "^7.32.0 || ^8.2.0",
+    "eslint-config-airbnb-base": "latest",
+    "eslint-plugin-import": "^2.25.2"
+  }
+}
