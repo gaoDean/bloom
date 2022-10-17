@@ -1,0 +1,13 @@
+:root {
+	--primary: #3fb8be !important;
+	--primary-hover: #3aacb2 !important;
+}
+
+.container {
+	padding-top: 0px;
+}
+
+#search {
+	height: calc(1rem * var(--line-height) + var(--form-element-spacing-vertical) + var(--border-width) * 2);
+	width: calc(var(--nav-element-spacing-horizontal) * 40);
+}

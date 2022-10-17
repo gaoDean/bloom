@@ -3,7 +3,7 @@
   "packageManager": "yarn@3.2.4",
   "scripts": {
     "lint": "eslint --ext .js",
-		"serve": "dead-server --host=localhost"
+		"serve": "dead-server --no-css-inject --host=localhost"
   },
   "devDependencies": {
     "dead-server": "https://github.com/gaoDean/dead-server.git",
