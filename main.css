@@ -3,10 +3,6 @@
 	--primary-hover: #3aacb2 !important;
 }
 
-.container {
-	padding-top: 0px;
-}
-
 #search {
 	height: calc(1rem * var(--line-height) + var(--form-element-spacing-vertical) + var(--border-width) * 2);
 	width: 50vw;
@@ -15,11 +11,11 @@
 }
 
 @media only screen and (max-width: 500px) {
-	.logo {
+	nav > .logo {
 		display: none;
 	}
 
-	.profile {
+	nav > .profile {
 		margin-top: calc(0.25 * var(--nav-element-spacing-vertical));
 		position: absolute;
 		right: 24px;
