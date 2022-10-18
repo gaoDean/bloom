@@ -13,7 +13,6 @@
 	max-width: 50vw;
 	background-position: center left 1rem;
 	border-left-color: var(--primary) !important;
-	border-right-color: var(--primary) !important;
 }
 
 @media only screen and (max-width: 500px) {
