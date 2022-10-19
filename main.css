@@ -10,7 +10,7 @@
 	background-position: center left 1rem;
 }
 
-@media only screen and (max-width: 500px) {
+@media (max-width: 500px) {
 	nav > .logo {
 		display: none;
 	}
@@ -34,4 +34,21 @@
 		width: 100%;
 		margin: 0 auto;
 	}
+}
+
+.filter-day-container {
+	justify-content: space-between;
+}
+
+.filter-day {
+	height: 2rem;
+	width: 2rem;
+	border-radius: 2rem;
+	text-align: center;
+	display: inline;
+	padding: 0px;
+}
+
+.filter-day:active {
+	background-color: transparent;
 }
