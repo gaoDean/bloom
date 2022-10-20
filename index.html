@@ -41,15 +41,33 @@
 			</ul>
 		</nav>
 		<main id="main" class="container">
-			<nav class="filter-day-container">
-				<ul><li style="padding: 0px"><button name="filter-day" class="filter-day" checked="true">M</button></li></ul>
-				<ul><li style="padding: 0px"><button name="filter-day" class="filter-day" checked="true">T</button></li></ul>
-				<ul><li style="padding: 0px"><button name="filter-day" class="filter-day" checked="true">W</button></li></ul>
-				<ul><li style="padding: 0px"><button name="filter-day" class="filter-day" checked="true">T</button></li></ul>
-				<ul><li style="padding: 0px"><button name="filter-day" class="filter-day" checked="true">F</button></li></ul>
-				<ul><li style="padding: 0px"><button name="filter-day" class="filter-day outline" checked="false">S</button></li></ul>
-				<ul><li style="padding: 0px"><button name="filter-day" class="filter-day outline" checked="false">S</button></li></ul>
-			</nav>
+			<div class="filter-container">
+				<div class="filter-day-container">
+					<button name="filter-day" class="filter-day" checked="true">M</button>
+					<div class="flex-buffer"></div>
+					<button name="filter-day" class="filter-day" checked="true">T</button>
+					<div class="flex-buffer"></div>
+					<button name="filter-day" class="filter-day" checked="true">W</button>
+					<div class="flex-buffer"></div>
+					<button name="filter-day" class="filter-day" checked="true">T</button>
+					<div class="flex-buffer"></div>
+					<button name="filter-day" class="filter-day" checked="true">F</button>
+					<div class="flex-buffer"></div>
+					<button name="filter-day" class="filter-day outline" checked="false">S</button>
+					<div class="flex-buffer"></div>
+					<button name="filter-day" class="filter-day outline" checked="false">S</button>
+				</div>
+				<div class="flex-buffer"></div>
+				<div class="filter-pay-container">
+					<input class="filter-pay outline secondary" placeholder="Pay">
+				</div>
+				<div class="flex-buffer"></div>
+				<div class="filter-time-container">
+					<button name="filter-time" class="filter-time" checked="true">Morning</button>
+					<div style="margin: 0 8px"></div>
+					<button name="filter-time" class="filter-time" checked="true">Evening</button>
+				</div>
+			</div>
 			<hr>
 		</main>
 		<script src="js/main.js"></script>

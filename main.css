@@ -15,7 +15,7 @@
 	background-position: center left 1rem;
 }
 
-@media (max-width: 500px) {
+@media only screen and (max-width: 500px) {
 	nav > .logo {
 		display: none;
 	}
@@ -41,17 +41,59 @@
 	}
 }
 
-.filter-day-container {
-	max-width: 20rem;
-	margin: auto;
-	margin-bottom: 2rem;
+.flex-buffer {
+	flex: 1 1 auto;
 }
 
-.filter-day {
+.filter-container {
+	display: flex;
+	flex-wrap: wrap;
+	margin: auto;
+}
+
+.filter-container > .filter-day-container {
+	display: flex;
+	flex: 1 0 auto;
+	max-width: 20rem;
+}
+
+.filter-day-container > .filter-day {
+	flex: none;
 	height: 2rem;
 	width: 2rem;
 	border-radius: 2rem;
-	text-align: center;
-	display: inline;
 	padding: 0px;
+	margin: 0 8px;
+}
+
+.filter-pay-container {
+	flex: 2 0;
+	margin: 0 1rem !important;
+}
+
+.filter-pay-container > .filter-pay {
+	flex: 1 0;
+	min-width: 6rem;
+	width: 100% !important;
+	height: 2rem !important;
+	border-radius: 2rem;
+	margin: 0 0 !important;
+}
+
+.filter-container > .filter-time-container {
+	display: flex;
+	flex: 3 0;
+}
+
+.filter-time-container > .filter-time {
+	flex: auto;
+	min-width: 5rem;
+	height: 2rem;
+	border-radius: 2rem;
+	padding: 0px;
+	margin: 0 0px;
+}
+
+hr {
+	margin-top: 2rem;
 }
