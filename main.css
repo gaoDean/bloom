@@ -52,9 +52,9 @@
 }
 
 .filter-container > .filter-day-container {
+	margin-top: 1rem;
 	display: flex;
 	flex: 1 0 auto;
-	max-width: 20rem;
 }
 
 .filter-day-container > .filter-day {
@@ -68,7 +68,9 @@
 
 .filter-pay-container {
 	flex: 2 0;
-	margin: 0 1rem !important;
+	margin: 0 0;
+	padding: 0 1rem;
+	margin-top: 1rem;
 }
 
 .filter-pay-container > .filter-pay {
@@ -83,6 +85,7 @@
 .filter-container > .filter-time-container {
 	display: flex;
 	flex: 3 0;
+	margin-top: 1rem;
 }
 
 .filter-time-container > .filter-time {
