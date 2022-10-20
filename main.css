@@ -4,7 +4,7 @@
 }
 
 .container {
-	margin-top: 0px;
+	margin-top: 1rem;
 	padding-top: 0px;
 }
 
@@ -46,15 +46,13 @@
 }
 
 .filter-container {
-	display: flex;
-	flex-wrap: wrap;
+	grid-column-gap: 5rem;
+	grid-row-gap: 1rem;
 	margin: auto;
 }
 
-.filter-container > .filter-day-container {
-	margin-top: 1rem;
+.filter-day-container {
 	display: flex;
-	flex: 1 0 auto;
 }
 
 .filter-day-container > .filter-day {
@@ -63,18 +61,17 @@
 	width: 2rem;
 	border-radius: 2rem;
 	padding: 0px;
-	margin: 0 8px;
+	margin: 0 0px;
 }
 
-.filter-pay-container {
-	flex: 2 0;
+.filter-snd-container {
+	display: grid;
+	column-gap: 1rem;
 	margin: 0 0;
-	padding: 0 1rem;
-	margin-top: 1rem;
+	grid-template-columns: repeat(auto-fit,minmax(0%,1fr));
 }
 
-.filter-pay-container > .filter-pay {
-	flex: 1 0;
+.filter-pay {
 	min-width: 6rem;
 	width: 100% !important;
 	height: 2rem !important;
@@ -82,13 +79,7 @@
 	margin: 0 0 !important;
 }
 
-.filter-container > .filter-time-container {
-	display: flex;
-	flex: 3 0;
-	margin-top: 1rem;
-}
-
-.filter-time-container > .filter-time {
+.filter-time {
 	flex: auto;
 	min-width: 5rem;
 	height: 2rem;
