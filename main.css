@@ -78,6 +78,11 @@
 	min-width: 9rem;
 }
 
+.filter-changed.filter-changed.filter-changed {
+	border-color: var(--primary);
+	color: var(--primary);
+}
+
 details[role=list][open] > summary {
 	border-bottom-right-radius: 0 !important;
     border-bottom-left-radius: 0 !important;
