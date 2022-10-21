@@ -22,11 +22,11 @@ const filters = {
 };
 
 function parseFilterUI(filterListNode) {
-  let list = [];
-  Array.from(filterListNode.getElementsByTagName('li')).forEach((label) => {
-    label = label.firstElementChild;
-    let name = label.textContent;
-    let checked = label.firstElementChild.checked;
+  const list = [];
+  Array.from(filterListNode.getElementsByTagName('li')).forEach((labelParent) => {
+    const label = labelParent.firstElementChild;
+    const name = label.textContent;
+    const { checked } = label.firstElementChild;
     list.push([name, checked]);
   });
   return list;
@@ -34,7 +34,7 @@ function parseFilterUI(filterListNode) {
 
 function addFilter(key, value) {
   let list = '';
-  let defaultList = Object.values(value.list);
+  const defaultList = Object.values(value.list);
   defaultList.forEach((label) => {
     const checked = label[1] ? 'checked' : '';
     list = `${list}<li><label><input type='checkbox' ${checked}>${label[0]}</label></li>\n`;
@@ -51,9 +51,8 @@ function addFilter(key, value) {
         </div>`;
 
   filterElement.insertAdjacentHTML('beforeend', newFilterHTML);
-  console.log(filterElement.lastElementChild.firstElementChild);
-  filterElement.lastElementChild.firstElementChild.addEventListener('click', function _(node) {
-    let parsedList = parseFilterUI(this.lastElementChild);
+  filterElement.lastElementChild.firstElementChild.addEventListener('click', function _() {
+    const parsedList = parseFilterUI(this.lastElementChild);
     if (JSON.stringify(defaultList) !== JSON.stringify(parsedList)) {
       this.firstElementChild.className = `filter-${key} filter-changed`;
     } else {
