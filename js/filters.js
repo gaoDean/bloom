@@ -1,7 +1,8 @@
 const filterElement = document.getElementById('filters');
 const filters = {
   days: {
-    name: 'Days...',
+    display: 'Days...',
+    type: 'checkbox',
     list: [
       ['Monday', true],
       ['Tuesday', true],
@@ -13,10 +14,18 @@ const filters = {
     ],
   },
   time: {
-    name: 'Time...',
+    display: 'Time...',
+    type: 'checkbox',
     list: [
       ['Morning', true],
       ['Afternoon', true],
+    ],
+  },
+  salary: {
+    display: 'Salary...',
+    type: 'radio',
+    list: [
+      ['Volunteer', false],
     ],
   },
 };
@@ -32,18 +41,18 @@ function parseFilterUI(filterListNode) {
   return list;
 }
 
-function addFilter(key, value) {
+function addFilter(name, opts) {
   let list = '';
-  const defaultList = Object.values(value.list);
+  const defaultList = Object.values(opts.list);
   defaultList.forEach((label) => {
     const checked = label[1] ? 'checked' : '';
-    list = `${list}<li><label><input type='checkbox' ${checked}>${label[0]}</label></li>\n`;
+    list = `${list}<li><label><input type='${opts.type}' ${checked}>${label[0]}</label></li>\n`;
   });
 
   const newFilterHTML = `
-        <div class='filter'>
-          <details role='list' class='filter-container filter-${key}-container'>
-            <summary class='filter-${key}' aria-haspopup='listbox'>${value.name}</summary>
+        <div>
+          <details role='list' class='filter filter-${name}-container'>
+            <summary class='filter-${name}' aria-haspopup='listbox'>${opts.display}</summary>
             <ul role='listbox'>
               ${list}
             </ul>
@@ -54,14 +63,14 @@ function addFilter(key, value) {
   filterElement.lastElementChild.firstElementChild.addEventListener('click', function _() {
     const parsedList = parseFilterUI(this.lastElementChild);
     if (JSON.stringify(defaultList) !== JSON.stringify(parsedList)) {
-      this.firstElementChild.className = `filter-${key} filter-changed`;
+      this.firstElementChild.className = `filter-${name} filter-changed`;
     } else {
-      this.firstElementChild.className = `filter-${key}`;
+      this.firstElementChild.className = `filter-${name}`;
     }
   });
 }
 
-Object.entries(filters).forEach(([key, value]) => addFilter(key, value));
+Object.entries(filters).forEach(([name, opts]) => addFilter(name, opts));
 
 // flex space between uses margin-right, this cancels it for the rightmost element
-filterElement.lastElementChild.style.cssText = 'margin-right: 0';
+filterElement.firstElementChild.style.cssText = 'margin-left: 0';

@@ -25,11 +25,13 @@
 	nav > .profile {
 		margin-top: calc(0.25 * var(--nav-element-spacing-vertical));
 		position: absolute;
-		right: 24px;
+		right: 22px;
 	}
 
 	.search-container {
-		width: calc(100vw - 17px);
+		width: 100%;
+		padding-left: 0px;
+		padding-right: 0px;
 	}
 
 	#search {
@@ -47,40 +49,42 @@
 	flex: 1 1 auto;
 }
 
-.all-filter-container {
+.filter-container {
 	display: flex;
 	flex-wrap: wrap;
 	margin: auto;
-	justify-content: space-around;
+	justify-content: left;
 }
 
-.filter.filter {
-	height: var(--filter-option-height);
-	flex: auto;
-	margin-bottom: calc(var(--form-element-spacing-vertical));
-	margin-right: calc(var(--form-element-spacing-horizontal));
+.filter-container > div {
+	display: inline-block;
+	height: var(--filter-option-height) !important;
+	flex: 0.6;
+	margin-bottom: calc(var(--form-element-spacing-vertical)) !important;
+	margin-left: calc(var(--form-element-spacing-horizontal) / 2);
 }
 
-.filter-container {
+.filter {
 	margin: 0;
-	flex-basis: 23%;
 	height: inherit;
 }
 
-.filter-container > summary {
+.filter > summary {
 	height: inherit !important;
 	border-radius: var(--filter-option-border-radius) !important;
 	padding-top: calc(0.5 * var(--form-element-spacing-vertical)) !important;
 	padding-bottom: calc(0.5 * var(--form-element-spacing-vertical)) !important;
+	border-color: var(--form-element-border-color) !important;
+	box-shadow: none !important;
 }
 
-.filter-time-container .filter-days-container {
-	min-width: 9rem;
+.filter-time-container, .filter-days-container, .filter-salary-container {
+	min-width: 9rem !important;
 }
 
-.filter-changed.filter-changed.filter-changed {
-	border-color: var(--primary);
-	color: var(--primary);
+.filter-changed {
+	border-color: var(--primary) !important;
+	color: var(--primary) !important;
 }
 
 details[role=list][open] > summary {
