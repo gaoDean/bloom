@@ -46,8 +46,12 @@ function addFilter(name, opts) {
   let list = '';
   const defaultList = Object.values(opts.list);
   defaultList.forEach((label) => {
-    const checked = label[1] ? 'checked' : '';
-    list = `${list}<li><label><input type='${opts.type}' ${checked}>${label[0]}</label></li>\n`;
+    let value = label[0];
+    let checked = label[1] ? 'checked' : '';
+    if (opts.type === 'radio') {
+      checked = `name="filter-payed-option"`;
+    }
+    list = `${list}<li><label><input type='${opts.type}' ${checked}/>${value}</label></li>\n`;
   });
 
   const newFilterHTML = `
