@@ -1,4 +1,4 @@
-const filterElement = document.getElementById('filters');
+const filterContainer = document.getElementById('filters');
 const filters = {
   days: {
     display: 'Days...',
@@ -25,6 +25,7 @@ const filters = {
     display: 'Salary...',
     type: 'radio',
     list: [
+      ['Payed', false],
       ['Volunteer', false],
     ],
   },
@@ -32,7 +33,7 @@ const filters = {
 
 function parseFilterUI(filterListNode) {
   const list = [];
-  Array.from(filterListNode.getElementsByTagName('li')).forEach((labelParent) => {
+  filterListNode.querySelectorAll('li').forEach((labelParent) => {
     const label = labelParent.firstElementChild;
     const name = label.textContent;
     const { checked } = label.firstElementChild;
@@ -51,7 +52,7 @@ function addFilter(name, opts) {
 
   const newFilterHTML = `
         <div>
-          <details role='list' class='filter filter-${name}-container'>
+          <details id='filter-${name}' role='list' class='filter filter-${name}-container'>
             <summary class='filter-${name}' aria-haspopup='listbox'>${opts.display}</summary>
             <ul role='listbox'>
               ${list}
@@ -59,8 +60,8 @@ function addFilter(name, opts) {
           </details>
         </div>`;
 
-  filterElement.insertAdjacentHTML('beforeend', newFilterHTML);
-  filterElement.lastElementChild.firstElementChild.addEventListener('click', function _() {
+  filterContainer.insertAdjacentHTML('beforeend', newFilterHTML);
+  filterContainer.querySelector(`:scope > div > details#filter-${name}`).addEventListener('click', function _() {
     const parsedList = parseFilterUI(this.lastElementChild);
     if (JSON.stringify(defaultList) !== JSON.stringify(parsedList)) {
       this.firstElementChild.className = `filter-${name} filter-changed`;
@@ -73,4 +74,4 @@ function addFilter(name, opts) {
 Object.entries(filters).forEach(([name, opts]) => addFilter(name, opts));
 
 // flex space between uses margin-right, this cancels it for the rightmost element
-filterElement.firstElementChild.style.cssText = 'margin-left: 0';
+filterContainer.firstElementChild.style.cssText = 'margin-left: 0';
