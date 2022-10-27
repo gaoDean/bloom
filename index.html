@@ -1,51 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
-	<head>
-		<meta charset="utf-8" />
-		<meta content="width=device-width, initial-scale=1" name="viewport" />
-		<meta name="description" content="Opportunities for youth." />
-		<link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
-		<link rel="stylesheet" href="main.css">
+  <head>
+    <title>Bloom</title>
 
-		<title>Bloom</title>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta name="description" content="Opportunities for youth." />
 
-		<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="img/icons/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="img/icons/favicon-16x16.png">
-		<link rel="manifest" href="img/icons/site.webmanifest">
-		<link rel="mask-icon" href="img/icons/safari-pinned-tab.svg" color="#5bbad5">
-		<meta name="msapplication-TileColor" content="#da532c">
-		<meta name="theme-color" content="#ffffff">
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"
+    />
 
-	</head>
-	<body>
-		<nav class="container-fluid">
-			<ul class="logo">
-				<li>
-					<a href="https://bloomjobs.live">
-						<img src="img/bloom.svg" style="height: 30px">
-					</a>
-				</li>
-				<li><a href="https://bloomjobs.live" class="secondary"><strong>Bloom</strong></a></li>
-			</ul>
-			<ul style="flex: 1; justify-content: center">
-				<li class="search-container"><input type="search" id="search" placeholder="Search..."></li>
-			</ul>
-			<ul class="profile">
-				<li>
-					<a href="#" class="secondary" style="padding: 8px"><svg height="30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="img" fill="none">
-						<path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-						<path d="M4.271 18.3457C4.271 18.3457 6.50002 15.5 12 15.5C17.5 15.5 19.7291 18.3457 19.7291 18.3457" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-						<path d="M12 12C13.6569 12 15 10.6569 15 9C15 7.34315 13.6569 6 12 6C10.3431 6 9 7.34315 9 9C9 10.6569 10.3431 12 12 12Z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-					</svg></a>
-				</li>
-			</ul>
-		</nav>
-		<main id="main" class="container">
-			<div id="filters" class="filter-container">
-			</div>
-			<hr>
-		</main>
-		<script src="js/filters.js"></script>
-	</body>
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 </html>

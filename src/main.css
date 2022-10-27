@@ -1,0 +1,19 @@
+:root {
+	--primary: #3fb8be !important;
+	--primary-hover: #3aacb2 !important;
+	--filter-option-height: 2rem;
+	--filter-option-border-radius: calc(var(--filter-option-height) * 0.6);
+}
+
+.container {
+	margin-top: 0px;
+	padding-top: 0px;
+}
+
+.flex-buffer {
+	flex: 1 1 auto;
+}
+
+hr {
+	margin-top: 2rem;
+}
