@@ -10,37 +10,39 @@ interface Filter {
 	list: FilterOption[];
 }
 
-export const filters: Filter[] = [
+const filters: Filter[] = [
 	{
-		id: "days",
-		name: "Days...",
-		type: "checkbox",
+		id: 'days',
+		name: 'Days...',
+		type: 'checkbox',
 		list: [
-			{text: "Monday", checked: true},
-			{text: "Tuesday", checked: true},
-			{text: "Wednesday", checked: true},
-			{text: "Thursday", checked: true},
-			{text: "Friday", checked: true},
-			{text: "Saturday", checked: false},
-			{text: "Sunday", checked: false}
-		]
+			{ text: 'Monday', checked: true },
+			{ text: 'Tuesday', checked: true },
+			{ text: 'Wednesday', checked: true },
+			{ text: 'Thursday', checked: true },
+			{ text: 'Friday', checked: true },
+			{ text: 'Saturday', checked: false },
+			{ text: 'Sunday', checked: false },
+		],
 	},
 	{
-		id: "time",
-		name: "Time...",
-		type: "checkbox",
+		id: 'time',
+		name: 'Time...',
+		type: 'checkbox',
 		list: [
-			{text: "Morning", checked: true},
-			{text: "Afternoon", checked: true}
-		]
+			{ text: 'Morning', checked: true },
+			{ text: 'Afternoon', checked: true },
+		],
 	},
 	{
-		id: "salary",
-		name: "Salary...",
-		type: "radio",
+		id: 'salary',
+		name: 'Salary...',
+		type: 'radio',
 		list: [
-			{text: "Payed", checked: false},
-			{text: "Volunteer", checked: false},
-		]
-	}
+			{ text: 'Payed', checked: false },
+			{ text: 'Volunteer', checked: false },
+		],
+	},
 ];
+
+export default filters;

@@ -42,5 +42,5 @@ jobs:
       - name: install uncached dependencies
         run: yarn install
 
-      - name: run svelte-check
-        run: yarn check
+      - name: run prettier and eslint
+        run: yarn flint
