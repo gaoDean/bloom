@@ -10,8 +10,8 @@
 		"preview": "vite preview",
 		"flint": "yarn format && yarn lint",
 		"format": "prettier --write --plugin-search-dir=. ./src/**/*.{js,svelte,html,ts}",
-		"lint": "eslint './src/**/*.{js,ts,svelte}'",
-		"lint:fix": "eslint --fix './src/**/*.{js,ts,svelte}'",
+		"lint": "eslint --cache './src/**/*.{js,ts,svelte}'",
+		"lint:fix": "eslint --cache --fix './src/**/*.{js,ts,svelte}'"
 	},
 	"devDependencies": {
 		"@sveltejs/vite-plugin-svelte": "^1.0.2",

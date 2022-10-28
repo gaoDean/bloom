@@ -27,7 +27,9 @@ module.exports = {
     'svelte3/typescript': require('typescript'),
   },
 	rules: {
-		'import/no-unresolved': 'off'
+		'import/no-unresolved': 'off',
+		'no-tabs': 'off',
+		"@typescript-eslint/indent": "off"
 	},
   plugins: ['svelte3', '@typescript-eslint'],
   ignorePatterns: ['node_modules'],
