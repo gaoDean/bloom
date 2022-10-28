@@ -1,6 +1,8 @@
 <script lang="ts">
-	import Navbar from './mod/Navbar.svelte';
-	import Filters from './mod/Filters.svelte';
+import Navbar from './mod/Navbar.svelte';
+import Filters from './mod/Filters.svelte';
+
+console.log('load');
 </script>
 
 <Navbar />

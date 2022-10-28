@@ -3,14 +3,14 @@ interface FilterOption {
 	checked: boolean;
 }
 
-interface Filter {
+export interface Filter {
 	id: string;
 	name: string;
 	type: string;
 	list: FilterOption[];
 }
 
-const filters: Filter[] = [
+export const defaultFilters: Filter[] = [
 	{
 		id: 'days',
 		name: 'Days...',
@@ -21,8 +21,8 @@ const filters: Filter[] = [
 			{ text: 'Wednesday', checked: true },
 			{ text: 'Thursday', checked: true },
 			{ text: 'Friday', checked: true },
-			{ text: 'Saturday', checked: false },
-			{ text: 'Sunday', checked: false },
+			{ text: 'Saturday', checked: true },
+			{ text: 'Sunday', checked: true },
 		],
 	},
 	{
@@ -37,12 +37,15 @@ const filters: Filter[] = [
 	{
 		id: 'salary',
 		name: 'Salary...',
-		type: 'radio',
+		type: 'checkbox',
 		list: [
-			{ text: 'Payed', checked: false },
+			{ text: 'Payed', checked: true },
 			{ text: 'Volunteer', checked: false },
 		],
 	},
 ];
 
-export default filters;
+export function deepClone(filters: Filter[]): Filter[] {
+	let clone: Filter[] = JSON.parse(JSON.stringify(filters));
+	return clone;
+}
