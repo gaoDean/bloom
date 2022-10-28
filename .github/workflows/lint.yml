@@ -42,5 +42,5 @@ jobs:
       - name: install uncached dependencies
         run: yarn install
 
-      - name: run prettier and eslint
+      - name: format and lint (prettier, eslint)
         run: yarn flint
