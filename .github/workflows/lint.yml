@@ -1,14 +1,14 @@
-name: Lint JavaScript
+name: Lint
 
 on:
   push:
     branches:
       - main
     paths:
-      - 'js/**'
+      - 'src/**'
   pull_request:
     paths:
-      - 'js/**'
+      - 'src/**'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
