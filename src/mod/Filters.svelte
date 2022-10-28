@@ -2,11 +2,11 @@
 import { type Filter, deepClone, defaultFilters } from './filter-data.js';
 
 // create a complete clone
-let filters: Filter[] = deepClone(defaultFilters);
+const filters: Filter[] = deepClone(defaultFilters);
 
 function optionChanged(filterIndex: number) {
 	const defaultClass = `filter-${filters[filterIndex].id}`;
-	const filterNodeId = document.querySelector('.' + defaultClass);
+	const filterNodeId = document.querySelector(`.${defaultClass}`);
 	if (
 		JSON.stringify(filters[filterIndex]) ===
 		JSON.stringify(defaultFilters[filterIndex])
@@ -15,7 +15,7 @@ function optionChanged(filterIndex: number) {
 	} else {
 		filterNodeId.className = filterNodeId.className.replace(
 			/ filter-changed/,
-			''
+			'',
 		);
 	}
 }

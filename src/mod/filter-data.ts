@@ -46,6 +46,6 @@ export const defaultFilters: Filter[] = [
 ];
 
 export function deepClone(filters: Filter[]): Filter[] {
-	let clone: Filter[] = JSON.parse(JSON.stringify(filters));
+	const clone: Filter[] = JSON.parse(JSON.stringify(filters)) as Filter[];
 	return clone;
 }
