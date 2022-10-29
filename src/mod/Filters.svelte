@@ -1,20 +1,36 @@
 <script lang="ts">
 import { type Filter, deepClone, defaultFilters } from './filter-data.js';
+import { tick } from 'svelte';
 
 // create a complete clone
 const filters: Filter[] = deepClone(defaultFilters);
+$: optionChanged(filters[0], 0);
+$: optionChanged(filters[1], 1);
+$: optionChanged(filters[2], 2);
+for (let filter in filters) {
+}
 
-function optionChanged(filterIndex: number) {
+function optionChanged(fil: Filter, filterIndex: number) {
 	const defaultClass = `filter-${filters[filterIndex].id}`;
 	const filterNodeId = document.querySelector(`.${defaultClass}`);
+
+	console.log(filterNodeId);
+	if (!filterNodeId) {
+		return;
+	}
+
+	console.log(filters[filterIndex]);
+	console.log(defaultFilters[filterIndex]);
+	console.log(JSON.stringify(filters[filterIndex]),
+		JSON.stringify(defaultFilters[filterIndex]));
 	if (
-		JSON.stringify(filters[filterIndex]) ===
+		JSON.stringify(filters[filterIndex]) !==
 		JSON.stringify(defaultFilters[filterIndex])
 	) {
 		filterNodeId.className += ' filter-changed';
 	} else {
 		filterNodeId.className = filterNodeId.className.replace(
-			/ filter-changed/,
+			/ filter-changed/g,
 			'',
 		);
 	}
@@ -40,7 +56,6 @@ function optionChanged(filterIndex: number) {
 									<input
 										type="checkbox"
 										bind:checked={opt.checked}
-										on:input={() => optionChanged(filterIndex)}
 									/>{opt.text}
 								{:else}
 									<input type="radio" name="filter-payed-option" />{opt.text}
