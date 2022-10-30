@@ -9,7 +9,7 @@ import View from './View.svelte';
 <Navbar />
 <main class="container">
 	<Filters />
-	<hr>
+	<hr />
 	<div class="content">
 		<View />
 	</div>
