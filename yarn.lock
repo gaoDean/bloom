@@ -172,7 +172,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playwright/test@npm:^1.25.0":
+"@playwright/test@npm:^1.27.1":
   version: 1.27.1
   resolution: "@playwright/test@npm:1.27.1"
   dependencies:
@@ -670,7 +670,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "bloom@workspace:."
   dependencies:
-    "@playwright/test": ^1.25.0
+    "@playwright/test": ^1.27.1
     "@sveltejs/adapter-auto": next
     "@sveltejs/kit": next
     "@typescript-eslint/eslint-plugin": ^5.27.0

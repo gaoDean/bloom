@@ -1,3 +1,7 @@
+<svelte:head>
+	<title>Job search</title>
+</svelte:head>
+
 <slot />
 
 <style>
