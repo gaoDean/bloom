@@ -15,7 +15,7 @@
 		"lint:fix": "eslint --cache --fix './src/routes/**/*.{ts,svelte}'"
 	},
 	"devDependencies": {
-		"@playwright/test": "^1.25.0",
+		"@playwright/test": "^1.27.1",
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",
 		"@typescript-eslint/eslint-plugin": "^5.27.0",
