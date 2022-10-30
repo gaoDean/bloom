@@ -1,21 +1,19 @@
 <script lang="ts">
 import { type Filter, deepClone, defaultFilters } from './filters.js';
+import { tick } from 'svelte';
 
 // create a complete clone
 const filters: Filter[] = deepClone(defaultFilters);
+let lastChangedFilterIndex = -1;
 
-function optionChanged(fils: Filter[]) {
-	fils.forEach((_, filterIndex) => {
-		const defaultClass = `filter-${filters[filterIndex].id}`;
+function optionChanged() {
+	if (lastChangedFilterIndex >= 0) {
+		const defaultClass = `filter-${filters[lastChangedFilterIndex].id}`;
 		const filterNodeId = document.querySelector(`.${defaultClass}`);
 
-		if (!filterNodeId) {
-			return;
-		}
-
 		if (
-			JSON.stringify(filters[filterIndex]) !==
-			JSON.stringify(defaultFilters[filterIndex])
+			JSON.stringify(filters[lastChangedFilterIndex]) !==
+			JSON.stringify(defaultFilters[lastChangedFilterIndex])
 		) {
 			filterNodeId.className += ' filter-changed';
 		} else {
@@ -24,15 +22,15 @@ function optionChanged(fils: Filter[]) {
 				'',
 			);
 		}
-	});
+	}
 }
 
-/* let lastChangedFilterIndex = -1; */
-$: optionChanged(filters);
+$: if (typeof document !== undefined) optionChanged(filters);
+
 </script>
 
 <div class="filter-container">
-	{#each filters as filter}
+	{#each filters as filter, filterIndex}
 		<div>
 			<details
 				id="filter-{filter.id}"
@@ -47,7 +45,13 @@ $: optionChanged(filters);
 						<li>
 							<label>
 								{#if filter.type === 'checkbox'}
-									<input type="checkbox" bind:checked={opt.checked} />{opt.text}
+									<input
+										type="checkbox"
+										on:change={() => {
+											lastChangedFilterIndex = filterIndex;
+										}}
+										bind:checked={opt.checked}
+									/>{opt.text}
 								{:else}
 									<input type="radio" name="filter-payed-option" />{opt.text}
 								{/if}

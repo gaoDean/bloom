@@ -87,7 +87,7 @@ const href = 'https://bloomjobs.live';
 	}
 
 	#search {
-		background-image: url(../assets/bloom.svg);
+		background-image: url($lib/img/bloom.svg);
 		background-size: 24px auto;
 		background-position: center left 0.9rem;
 		border-left-color: var(--primary) !important;
