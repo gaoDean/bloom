@@ -1,32 +1,26 @@
 <script lang="ts">
 import { type Filter, deepClone, defaultFilters } from './filters.js';
-import { tick } from 'svelte';
 
 // create a complete clone
 const filters: Filter[] = deepClone(defaultFilters);
 let lastChangedFilterIndex = -1;
 
-function optionChanged() {
-	if (lastChangedFilterIndex >= 0) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function optionChanged(_reactiveAssignment: Filter[]) {
+	if (lastChangedFilterIndex >= 0 && lastChangedFilterIndex < filters.length) {
 		const defaultClass = `filter-${filters[lastChangedFilterIndex].id}`;
-		const filterNodeId = document.querySelector(`.${defaultClass}`);
-
 		if (
-			JSON.stringify(filters[lastChangedFilterIndex]) !==
-			JSON.stringify(defaultFilters[lastChangedFilterIndex])
+			JSON.stringify(filters[lastChangedFilterIndex].list) !==
+			JSON.stringify(defaultFilters[lastChangedFilterIndex].list)
 		) {
-			filterNodeId.className += ' filter-changed';
+			filters[lastChangedFilterIndex].class = `${defaultClass} filter-changed`;
 		} else {
-			filterNodeId.className = filterNodeId.className.replace(
-				/ filter-changed/g,
-				'',
-			);
+			filters[lastChangedFilterIndex].class = defaultClass;
 		}
 	}
 }
 
-$: if (typeof document !== undefined) optionChanged(filters);
-
+$: optionChanged(filters);
 </script>
 
 <div class="filter-container">
@@ -37,7 +31,7 @@ $: if (typeof document !== undefined) optionChanged(filters);
 				role="list"
 				class="filter filter-{filter.id}-container"
 			>
-				<summary class="filter-{filter.id}" aria-haspopup="listbox"
+				<summary class={filter.class} aria-haspopup="listbox"
 					>{filter.name}
 				</summary>
 				<ul role="listbox">
