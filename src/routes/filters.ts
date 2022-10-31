@@ -14,7 +14,7 @@ export interface Filter {
 export const defaultFilters: Filter[] = [
 	{
 		id: 'days',
-		name: 'Days...',
+		name: 'Days',
 		type: 'checkbox',
 		class: 'filter-days',
 		list: [
@@ -29,7 +29,7 @@ export const defaultFilters: Filter[] = [
 	},
 	{
 		id: 'time',
-		name: 'Time...',
+		name: 'Time',
 		type: 'checkbox',
 		class: 'filter-time',
 		list: [
@@ -39,7 +39,7 @@ export const defaultFilters: Filter[] = [
 	},
 	{
 		id: 'salary',
-		name: 'Salary...',
+		name: 'Salary',
 		type: 'checkbox',
 		class: 'filter-salary',
 		list: [

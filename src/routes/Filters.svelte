@@ -32,7 +32,7 @@ $: optionChanged(filters);
 				class="filter filter-{filter.id}-container"
 			>
 				<summary class={filter.class} aria-haspopup="listbox"
-					>{filter.name}
+					><small>{filter.name}</small>
 				</summary>
 				<ul role="listbox">
 					{#each filter.list as opt}
@@ -59,6 +59,12 @@ $: optionChanged(filters);
 </div>
 
 <style>
+:root {
+	--filter-option-height: 32px;
+	--filter-option-padding: 8px;
+	--filter-option-border-radius: calc(var(--filter-option-height) * 0.5);
+}
+
 .filter-container {
 	display: flex;
 	flex-wrap: wrap;
@@ -69,10 +75,8 @@ $: optionChanged(filters);
 .filter-container > div {
 	display: inline-block;
 	height: var(--filter-option-height) !important;
-	flex: 0.6;
-	margin-bottom: calc(var(--form-element-spacing-vertical)) !important;
-	margin-left: calc(var(--form-element-spacing-horizontal) / 4);
-	margin-right: calc(var(--form-element-spacing-horizontal) / 4);
+	flex: 0.14;
+	margin: 0px 0px var(--filter-option-padding) 4px !important;
 }
 
 .filter {
@@ -83,16 +87,10 @@ $: optionChanged(filters);
 .filter > summary {
 	height: inherit !important;
 	border-radius: var(--filter-option-border-radius) !important;
-	padding-top: calc(0.5 * var(--form-element-spacing-vertical)) !important;
-	padding-bottom: calc(0.5 * var(--form-element-spacing-vertical)) !important;
+	padding-top: calc(0.5 * var(--filter-option-padding)) !important;
+	padding-bottom: calc(0.5 * var(--filter-option-padding)) !important;
 	border-color: var(--form-element-border-color) !important;
 	box-shadow: none !important;
-}
-
-.filter-time-container,
-.filter-days-container,
-.filter-salary-container {
-	min-width: 9rem !important;
 }
 
 .filter-changed {
@@ -100,7 +98,24 @@ $: optionChanged(filters);
 	color: var(--primary) !important;
 }
 
+details[role='list'] > summary::after {
+	transform: rotate(-90deg);
+	background-image: none;
+}
+
+details[role='list'][open] > summary::after {
+	transform: rotate(0);
+}
+
+details[role='list'] > summary {
+	margin-inline-start: 0px;
+	min-width: 0rem;
+	transition: all 0.5s;
+}
+
 details[role='list'][open] > summary {
+	transition: all 0.2s;
+	min-width: 10rem;
 	border-bottom-right-radius: 0 !important;
 	border-bottom-left-radius: 0 !important;
 }

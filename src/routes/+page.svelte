@@ -8,7 +8,9 @@ import View from './View.svelte';
 
 <Navbar />
 <main class="container">
-	<Filters />
+	<div class="filter-component-container">
+		<Filters />
+	</div>
 	<hr />
 	<div class="content">
 		<View />
@@ -16,10 +18,16 @@ import View from './View.svelte';
 </main>
 
 <style>
-@media only screen and (min-width: 500) {
+@media only screen and (max-width: 500px) {
 	.content {
 		padding-right: var(--spacing);
 		padding-left: var(--spacing);
+	}
+
+	.filter-component-container {
+		/* padding from the left of the filters, needs compensation*/
+		padding-left: calc(var(--spacing) - 4px);
+		padding-right: var(--spacing);
 	}
 }
 
