@@ -77,7 +77,7 @@ const href = 'https://bloomjobs.live';
 	nav > .profile {
 		margin-top: calc(0.25 * var(--nav-element-spacing-vertical));
 		position: absolute;
-		right: 22px;
+		right: 21px;
 	}
 
 	.search-container {
@@ -89,7 +89,7 @@ const href = 'https://bloomjobs.live';
 	#search {
 		background-image: url($lib/img/bloom.svg);
 		background-size: 24px auto;
-		background-position: center left 0.9rem;
+		background-position: center left 0.8rem;
 		border-left-color: var(--primary) !important;
 		max-width: 100%;
 		width: 100%;
