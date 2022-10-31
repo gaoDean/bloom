@@ -1,5 +1,5 @@
 <script>
-import '$lib/css/pico/custom.scss';
+import '$lib/css/main.scss';
 </script>
 
 <svelte:head>
