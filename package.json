@@ -8,7 +8,7 @@
 		"build": "vite build",
 		"preview": "vite preview",
 		"test": "playwright test",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check": "svelte-kit sync && svelte-check --fail-on-warnings --tsconfig ./tsconfig.json",
 		"flc": "yarn format && yarn lint && yarn check",
 		"format": "prettier --write --plugin-search-dir=. ./src/routes/**/*.{js,svelte,html,ts}",
 		"lint": "eslint --cache './src/routes/**/*.{ts,svelte}'",
