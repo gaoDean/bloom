@@ -10,7 +10,7 @@
 		"test": "playwright test",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"flc": "yarn format && yarn lint && yarn check",
-		"format": "prettier --write --plugin-search-dir=. ./src/**/*.{js,svelte,html,ts}",
+		"format": "prettier --write --plugin-search-dir=. ./src/routes/**/*.{js,svelte,html,ts}",
 		"lint": "eslint --cache './src/routes/**/*.{ts,svelte}'",
 		"lint:fix": "eslint --cache --fix './src/routes/**/*.{ts,svelte}'"
 	},
