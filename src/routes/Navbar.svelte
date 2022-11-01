@@ -1,18 +1,19 @@
 <script lang="ts">
-import logo from '$lib/img/bloom.svg';
+import logo from '$lib/img/logo.svg';
+import profile from '$lib/img/profile.svg';
 
-const href = 'https://bloomjobs.live';
+const rootUrl = 'https://bloomjobs.live';
 </script>
 
 <nav class="container-fluid">
 	<ul class="logo">
 		<li>
-			<a href={href}>
+			<a href={rootUrl}>
 				<img alt="logo" src={logo} style="height: 30px" />
 			</a>
 		</li>
 
-		<li><a href={href} class="secondary"><strong>Bloom</strong></a></li>
+		<li><a href={rootUrl} class="secondary"><strong>Bloom</strong></a></li>
 	</ul>
 	<ul style="flex: 1; justify-content: center">
 		<li class="search-container">
@@ -21,39 +22,12 @@ const href = 'https://bloomjobs.live';
 	</ul>
 	<ul class="profile">
 		<li>
-			<a href={href} class="secondary" style="padding: 8px"
-				><svg
-					height="30px"
-					xmlns="http://www.w3.org/2000/svg"
-					viewBox="0 0 24 24"
-					aria-hidden="true"
-					focusable="false"
-					role="img"
-					fill="none"
-				>
-					<path
-						d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z"
-						stroke="currentColor"
-						stroke-width="1.3"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-					/>
-					<path
-						d="M4.271 18.3457C4.271 18.3457 6.50002 15.5 12 15.5C17.5 15.5 19.7291 18.3457 19.7291 18.3457"
-						stroke="currentColor"
-						stroke-width="1.3"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-					/>
-					<path
-						d="M12 12C13.6569 12 15 10.6569 15 9C15 7.34315 13.6569 6 12 6C10.3431 6 9 7.34315 9 9C9 10.6569 10.3431 12 12 12Z"
-						stroke="currentColor"
-						stroke-width="1.3"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-					/>
-				</svg></a
-			>
+			<a href={rootUrl} style="padding: 8px"
+				><img
+					alt="profile"
+					style="content: url({profile}); filter: opacity(0.6)"
+				/>
+			</a>
 		</li>
 	</ul>
 </nav>
@@ -84,10 +58,11 @@ const href = 'https://bloomjobs.live';
 		width: 100%;
 		padding-left: 0px;
 		padding-right: 0px;
+		padding-bottom: 8px;
 	}
 
 	#search {
-		background-image: url($lib/img/bloom.svg);
+		background-image: url($lib/img/logo.svg);
 		background-size: 24px auto;
 		background-position: center left 0.8rem;
 		border-left-color: var(--primary) !important;
