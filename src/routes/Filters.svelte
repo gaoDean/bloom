@@ -1,8 +1,9 @@
 <script lang="ts">
-import { type Filter, deepClone, defaultFilters } from './filters.js';
+export let filters;
+import { type Filter, deepClone } from './filters.js';
 
 // create a complete clone
-const filters: Filter[] = deepClone(defaultFilters);
+const defaultFilters: Filter[] = deepClone(filters);
 let lastChangedFilterIndex = -1;
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -60,9 +61,9 @@ $: optionChanged(filters);
 
 <style>
 :root {
-	--filter-option-height: 32px;
+	--filter-option-height: 16px;
 	--filter-option-padding: 8px;
-	--filter-option-border-radius: calc(var(--filter-option-height) * 0.5);
+	--filter-option-border-radius: calc(var(--filter-option-height));
 }
 
 .filter-container {
@@ -75,7 +76,7 @@ $: optionChanged(filters);
 .filter-container > div {
 	display: inline-block;
 	height: var(--filter-option-height) !important;
-	flex: 0.14;
+	flex: 0.2;
 	margin: 0px 0px var(--filter-option-padding) 4px !important;
 }
 
@@ -87,7 +88,7 @@ $: optionChanged(filters);
 .filter > summary {
 	height: inherit !important;
 	border-radius: var(--filter-option-border-radius) !important;
-	padding-top: calc(0.5 * var(--filter-option-padding)) !important;
+	padding-top: 2px !important;
 	padding-bottom: calc(0.5 * var(--filter-option-padding)) !important;
 	border-color: var(--form-element-border-color) !important;
 	box-shadow: none !important;

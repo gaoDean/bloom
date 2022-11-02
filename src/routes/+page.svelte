@@ -2,18 +2,20 @@
 import Navbar from './Navbar.svelte';
 import Filters from './Filters.svelte';
 import View from './View.svelte';
+import { filters } from './filters.ts';
 
-/* console.log('load'); */
+/** @type {import('./$types').PageData} */
+export let data;
+const jobs = data.post;
 </script>
 
 <Navbar />
 <main class="container">
 	<div class="filter-component-container">
-		<Filters />
+		<Filters filters={filters}/>
 	</div>
-	<hr />
 	<div class="content">
-		<View />
+		<View jobs={jobs} filters={filters}/>
 	</div>
 </main>
 
