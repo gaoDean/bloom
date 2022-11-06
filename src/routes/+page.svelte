@@ -12,10 +12,10 @@ const jobs = data.post;
 <Navbar />
 <main class="container">
 	<div class="filter-component-container">
-		<Filters filters={filters}/>
+		<Filters filters={filters} />
 	</div>
 	<div class="content">
-		<View jobs={jobs} filters={filters}/>
+		<View jobs={jobs} filters={filters} />
 	</div>
 </main>
 

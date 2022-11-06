@@ -1,6 +1,7 @@
 <script lang="ts">
-export let filters;
 import { type Filter, deepClone } from './filters.js';
+
+export let filters;
 
 // create a complete clone
 const defaultFilters: Filter[] = deepClone(filters);

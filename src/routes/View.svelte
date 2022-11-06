@@ -5,21 +5,18 @@ export let filters;
 function listToArray(list: string): string[] {
 	return list.split(/\r?\n/).filter(element => element);
 }
-
 </script>
 
 {#each jobs as job}
 	<article>
 		<h3>{job.name}</h3>
 		<ul>
-		{#each listToArray(job.short) as descLine}
-			<li><b>{descLine.replace(/- /, '')}</b></li>
-		{/each}
+			{#each listToArray(job.short) as descLine}
+				<li><b>{descLine.replace(/- /, '')}</b></li>
+			{/each}
 		</ul>
 		<p class="long-desc">{job.description}</p>
-		<button class="apply">
-			Apply
-		</button>
+		<button class="apply"> Apply </button>
 	</article>
 {/each}
 
