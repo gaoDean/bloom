@@ -1,6 +1,9 @@
 <script lang="ts">
-export let jobs;
-export let filters;
+import { type Jobs } from '$lib/server/dbJobsTypes.ts';
+import { type Filter } from './filters.js';
+
+export let jobs: Jobs;
+export let filters: Filter[];
 
 function listToArray(list: string): string[] {
 	return list.split(/\r?\n/).filter(element => element);

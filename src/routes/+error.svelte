@@ -1,5 +1,6 @@
 <script>
-import { page } from '$app/stores'; declare let $page:Parameters<Parameters<typeof page.subscribe>[0]>[0];
+// eslint-disable-next-line
+import { page } from '$app/stores';
 </script>
 
 <div class="error-container" style="">

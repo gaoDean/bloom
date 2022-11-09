@@ -1,4 +1,4 @@
-import * as db from '$lib/server/supabaseClient.ts';
+import * as db from '$lib/server/supabaseClient.js';
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ params }) {

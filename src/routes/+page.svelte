@@ -2,11 +2,13 @@
 import Navbar from './Navbar.svelte';
 import Filters from './Filters.svelte';
 import View from './View.svelte';
-import { filters } from './filters.ts';
+import { type Jobs } from '$lib/server/dbJobsTypes.ts';
+import { filters } from './filters.js';
+
 
 /** @type {import('./$types').PageData} */
-export let data;
-const jobs = data.post;
+export let data: { post: Jobs };
+const jobs: Jobs = data.post;
 </script>
 
 <Navbar />
@@ -38,9 +40,5 @@ const jobs = data.post;
 	padding-top: 0px;
 	padding-left: 0px;
 	padding-right: 0px;
-}
-
-hr {
-	margin-top: 2rem;
 }
 </style>
