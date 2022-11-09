@@ -26,7 +26,7 @@ async function writeTableTypes(tableName: string, data) {
 	buffer += '}\n\n';
 	buffer += `export type ${pcaseName} = Row[];`;
 	try {
-		const typesFilePath = `src/lib/server/db${pcaseName}.types.ts`;
+		const typesFilePath = `src/lib/db${pcaseName}.types.ts`;
 		pathExists(typesFilePath, exists => {
 			if (exists) {
 				fsPromises.writeFile(typesFilePath, buffer, {

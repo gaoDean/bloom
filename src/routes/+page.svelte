@@ -2,7 +2,7 @@
 import Navbar from './Navbar.svelte';
 import Filters from './Filters.svelte';
 import View from './View.svelte';
-import { type Jobs } from '$lib/server/dbJobsTypes.ts';
+import { type Jobs } from '$lib/dbJobsTypes.ts';
 import { filters } from './filters.js';
 
 
