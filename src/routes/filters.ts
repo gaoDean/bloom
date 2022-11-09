@@ -11,7 +11,7 @@ export interface Filter {
 	list: FilterOption[];
 }
 
-export const defaultFilters: Filter[] = [
+export const filters: Filter[] = [
 	{
 		id: 'days',
 		name: 'Days',
@@ -49,7 +49,6 @@ export const defaultFilters: Filter[] = [
 	},
 ];
 
-export function deepClone(filters: Filter[]): Filter[] {
-	const clone: Filter[] = JSON.parse(JSON.stringify(filters)) as Filter[];
-	return clone;
+export function deepClone(filterArray: Filter[]): Filter[] {
+	return JSON.parse(JSON.stringify(filterArray)) as Filter[];
 }
