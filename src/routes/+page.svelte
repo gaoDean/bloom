@@ -2,13 +2,12 @@
 import Navbar from './Navbar.svelte';
 import Filters from './Filters.svelte';
 import View from './View.svelte';
-import { type Jobs } from '$lib/dbJobsTypes.ts';
+import { type Job } from '$lib/dbJobsTypes.ts';
 import { filters } from './filters.js';
 
-
 /** @type {import('./$types').PageData} */
-export let data: { post: Jobs };
-const jobs: Jobs = data.post;
+export let data: { post: Job[] };
+const jobs: Job[] = data.post;
 </script>
 
 <Navbar />
