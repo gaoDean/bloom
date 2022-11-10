@@ -1,6 +1,6 @@
 <script lang="ts">
 import { type Job } from '$lib/dbJobsTypes.js';
-import { type Filter } from './filters.js';
+/* import { type Filter } from './filters.js'; */
 
 export let jobs: Job[];
 /* export let filters: Filter[]; */
