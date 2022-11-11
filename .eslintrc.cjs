@@ -31,6 +31,7 @@ module.exports = {
 		'import/prefer-default-export': 'warn',
 		'import/no-mutable-exports': 'warn',
 		'import/extensions': 'warn',
+		'import/first': 'off',
 		'@typescript-eslint/no-unsafe-assignment': 'off',
 		'@typescript-eslint/no-unsafe-member-access': 'warn',
 		'@typescript-eslint/no-unsafe-call': 'warn',
