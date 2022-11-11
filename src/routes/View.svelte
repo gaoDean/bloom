@@ -1,13 +1,12 @@
 <script lang="ts">
 import { type Job } from '$lib/dbJobsTypes.js';
 import '$lib/jobDescription.css';
+import { selectedJob } from './stores.js';
 import { listToArray, formatTime } from '$lib/jobDisplayFunctions.js';
 /* import { type Filter } from './filters.js'; */
 
 export let jobs: Job[];
-export let selectedJob: Job;
 /* export let filters: Filter[]; */
-
 </script>
 
 {#each jobs as job}
@@ -31,7 +30,7 @@ export let selectedJob: Job;
 			<button class="button">Apply</button>
 			<button
 				class="button outline secondary button-info"
-				on:click={() => (selectedJob = job)}
+				on:click={() => selectedJob.set(job)}
 			>
 				Info
 			</button>
