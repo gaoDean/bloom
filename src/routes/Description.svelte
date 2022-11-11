@@ -1,8 +1,9 @@
 <script lang="ts">
-import { type Job } from '$lib/dbJobsTypes.js'; // eslint-disable-line
+import { type Job } from '$lib/dbJobsTypes.js';
 import { listToArray, formatTime } from '$lib/jobDisplayFunctions.js';
-import { selectedJob as selected } from './stores.js';
 import '$lib/jobDescription.css';
+
+export let selected: Job;
 </script>
 
 <dialog open>
@@ -10,25 +11,25 @@ import '$lib/jobDescription.css';
 		<header style="margin-bottom: 2rem">
 			<button
 				class="secondary outline close"
-				on:click={() => selected.set(undefined)}
+				on:click={() => (selected = undefined)}
 			/>
 			<h3 style="margin-bottom: 0; padding-bottom: 1rem;">
-				{$selected.name}
+				{selected.name}
 			</h3>
-			<p style="margin-bottom: 0">{$selected.job}</p>
+			<p style="margin-bottom: 0">{selected.job}</p>
 		</header>
 		<ul>
-			{#each listToArray($selected.short) as descLine}
+			{#each listToArray(selected.short) as descLine}
 				<li><strong>{descLine.replace(/- /, '')}</strong></li>
 			{/each}
 		</ul>
-		<p>{$selected.description}</p>
+		<p>{selected.description}</p>
 		<p>
-			<em>{$selected.location}</em>
+			<em>{selected.location}</em>
 			<br />
 			<em
-				>{$selected.days}: from {formatTime($selected.from)} to {formatTime(
-					$selected.to,
+				>{selected.days}: from {formatTime(selected.from)} to {formatTime(
+					selected.to,
 				)}.</em
 			>
 		</p>

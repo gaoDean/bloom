@@ -5,15 +5,16 @@ import View from './View.svelte';
 import Description from './Description.svelte';
 import { type Job } from '$lib/dbJobsTypes.ts'; // eslint-disable-line
 import { filters } from './filters.js';
-import { selectedJob } from './stores.js';
 
 /** @type {import('./$types').PageData} */
 export let data: { post: Job[] };
+
 const jobs: Job[] = data.post;
+let selectedJob: Job;
 </script>
 
-{#if $selectedJob}
-	<Description />
+{#if selectedJob}
+	<Description bind:selected={selectedJob} />
 {/if}
 <Navbar />
 <main class="container">
@@ -21,7 +22,7 @@ const jobs: Job[] = data.post;
 		<Filters filters={filters} />
 	</div>
 	<div class="content">
-		<View jobs={jobs} filters={filters} />
+		<View jobs={jobs} filters={filters} bind:selected={selectedJob} />
 	</div>
 </main>
 
