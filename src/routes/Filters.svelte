@@ -83,6 +83,7 @@ $: optionChanged(filters);
 
 .filter {
 	margin: 0;
+	padding-bottom: 1rem;
 	height: inherit;
 }
 

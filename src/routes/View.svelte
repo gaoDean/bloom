@@ -1,8 +1,10 @@
 <script lang="ts">
+import { onMount } from 'svelte';
 import { type Job } from '$lib/dbJobsTypes.js';
 /* import { type Filter } from './filters.js'; */
 
 export let jobs: Job[];
+export let selectedJob: Job;
 /* export let filters: Filter[]; */
 
 function listToArray(list: string): string[] {
@@ -17,11 +19,7 @@ function formatTime(hms: string): string {
 	d.setSeconds(time[2]);
 	return d.toLocaleTimeString('en-US');
 }
-
-let selectedJob: Job;
-// $: console.log(selectedJob);
 </script>
-
 {#each jobs as job}
 	<article>
 		<hgroup>
@@ -37,7 +35,7 @@ let selectedJob: Job;
 		<p>
 			<em>{job.location}</em>
 			<br />
-			<em>{job.days}; from {formatTime(job.from)} to {formatTime(job.to)}.</em>
+			<em>{job.days}: from {formatTime(job.from)} to {formatTime(job.to)}.</em>
 		</p>
 		<div class="button-container">
 			<button class="button">Apply</button>
@@ -50,43 +48,8 @@ let selectedJob: Job;
 		</div>
 	</article>
 {/each}
-{#if selectedJob}
-	<dialog open>
-		<article>
-			<header style="margin-bottom: 2rem">
-				<button
-					class="secondary outline close"
-					on:click={() => (selectedJob = undefined)}
-				/>
-				<h3 style="margin-bottom: 0; padding-bottom: 1rem;">
-					{selectedJob.name}
-				</h3>
-				<p style="margin-bottom: 0">{selectedJob.job}</p>
-			</header>
-			<ul>
-				{#each listToArray(selectedJob.short) as descLine}
-					<li><strong>{descLine.replace(/- /, '')}</strong></li>
-				{/each}
-			</ul>
-			<p>{selectedJob.description}</p>
-			<p>
-				<em>{selectedJob.location}</em>
-				<br />
-				<em
-					>{selectedJob.days}; from {formatTime(selectedJob.from)} to {formatTime(
-						selectedJob.to,
-					)}.</em
-				>
-			</p>
-			<button class="button" style="margin-top: 2rem">Apply</button>
-		</article>
-	</dialog>
-{/if}
 
 <style>
-dialog > article {
-	padding-bottom: 2rem;
-}
 .button-container {
 	display: flex;
 	justify-content: left;
@@ -112,4 +75,5 @@ dialog > article {
 		display: none;
 	}
 }
+
 </style>
