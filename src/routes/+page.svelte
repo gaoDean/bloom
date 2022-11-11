@@ -2,13 +2,14 @@
 import Navbar from './Navbar.svelte';
 import Filters from './Filters.svelte';
 import View from './View.svelte';
+import Description from './Description.svelte';
 import { type Job } from '$lib/dbJobsTypes.ts';
 import { filters } from './filters.js';
 
 /** @type {import('./$types').PageData} */
 export let data: { post: Job[] };
 const jobs: Job[] = data.post;
-let selectedJob: Job = undefined;
+let selectedJob: Job;
 </script>
 
 {#if selectedJob}

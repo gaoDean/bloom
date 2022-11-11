@@ -1,25 +1,15 @@
 <script lang="ts">
-import { onMount } from 'svelte';
 import { type Job } from '$lib/dbJobsTypes.js';
+import '$lib/jobDescription.css';
+import { listToArray, formatTime } from '$lib/jobDisplayFunctions.js';
 /* import { type Filter } from './filters.js'; */
 
 export let jobs: Job[];
 export let selectedJob: Job;
 /* export let filters: Filter[]; */
 
-function listToArray(list: string): string[] {
-	return list.split(/\r?\n/).filter(element => element);
-}
-
-function formatTime(hms: string): string {
-	const time: number[] = hms.split(':') as number[];
-	const d = new Date();
-	d.setHours(time[0]);
-	d.setMinutes(time[1]);
-	d.setSeconds(time[2]);
-	return d.toLocaleTimeString('en-US');
-}
 </script>
+
 {#each jobs as job}
 	<article>
 		<hgroup>
@@ -54,26 +44,12 @@ function formatTime(hms: string): string {
 	display: flex;
 	justify-content: left;
 }
-.button {
-	flex: auto;
-	max-width: 10rem;
-	height: 2rem;
-	border-radius: 1rem;
-	padding-top: 0;
-	padding-bottom: 0;
-}
 .button-info {
 	margin-left: 1rem;
-}
-
-.close {
-	border: none;
-	box-shadow: none;
 }
 @media only screen and (max-width: 500px) {
 	.long-desc {
 		display: none;
 	}
 }
-
 </style>
