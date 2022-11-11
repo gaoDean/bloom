@@ -2,22 +2,27 @@
 import Navbar from './Navbar.svelte';
 import Filters from './Filters.svelte';
 import View from './View.svelte';
-import { type Jobs } from '$lib/dbJobsTypes.ts';
+import Description from './Description.svelte';
+import { type Job } from '$lib/dbJobsTypes.ts'; // eslint-disable-line
 import { filters } from './filters.js';
 
-
 /** @type {import('./$types').PageData} */
-export let data: { post: Jobs };
-const jobs: Jobs = data.post;
+export let data: { post: Job[] };
+
+const jobs: Job[] = data.post;
+let selectedJob: Job;
 </script>
 
+{#if selectedJob}
+	<Description bind:selected={selectedJob} />
+{/if}
 <Navbar />
 <main class="container">
 	<div class="filter-component-container">
 		<Filters filters={filters} />
 	</div>
 	<div class="content">
-		<View jobs={jobs} filters={filters} />
+		<View jobs={jobs} filters={filters} bind:selected={selectedJob} />
 	</div>
 </main>
 

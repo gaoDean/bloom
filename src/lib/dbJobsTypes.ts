@@ -1,4 +1,4 @@
-export interface Row {
+export interface Job {
 	id: number;
 	inserted_at: string;
 	name: string;
@@ -11,5 +11,3 @@ export interface Row {
 	description: string;
 	short: string;
 }
-
-export type Jobs = Row[];

@@ -1,35 +1,50 @@
 <script lang="ts">
-import { type Jobs } from '$lib/dbJobsTypes.ts';
-import { type Filter } from './filters.js';
+import { type Job } from '$lib/dbJobsTypes.js';
+import '$lib/jobDescription.css';
+import { listToArray, formatTime } from '$lib/jobDisplayFunctions.js';
+/* import { type Filter } from './filters.js'; */
 
-export let jobs: Jobs;
-export let filters: Filter[];
-
-function listToArray(list: string): string[] {
-	return list.split(/\r?\n/).filter(element => element);
-}
+export let jobs: Job[];
+export let selected: Job;
+/* export let filters: Filter[]; */
 </script>
 
 {#each jobs as job}
 	<article>
-		<h3>{job.name}</h3>
+		<hgroup>
+			<h3 style="margin-bottom: 1rem">{job.name}</h3>
+			<p style="">{job.job}</p>
+		</hgroup>
 		<ul>
 			{#each listToArray(job.short) as descLine}
-				<li><b>{descLine.replace(/- /, '')}</b></li>
+				<li><strong>{descLine.replace(/- /, '')}</strong></li>
 			{/each}
 		</ul>
 		<p class="long-desc">{job.description}</p>
-		<button class="apply"> Apply </button>
+		<p>
+			<em>{job.location}</em>
+			<br />
+			<em>{job.days}: from {formatTime(job.from)} to {formatTime(job.to)}.</em>
+		</p>
+		<div class="button-container">
+			<button class="button">Apply</button>
+			<button
+				class="button outline secondary button-info"
+				on:click={() => (selected = job)}
+			>
+				Info
+			</button>
+		</div>
 	</article>
 {/each}
 
 <style>
-.apply {
-	max-width: 10rem;
-	height: 2rem;
-	border-radius: 1rem;
-	padding-top: 0;
-	padding-bottom: 0;
+.button-container {
+	display: flex;
+	justify-content: left;
+}
+.button-info {
+	margin-left: 1rem;
 }
 @media only screen and (max-width: 500px) {
 	.long-desc {

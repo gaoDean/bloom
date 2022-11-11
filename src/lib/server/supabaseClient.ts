@@ -9,7 +9,7 @@ export const client = createClient(
 );
 
 function toPascalCase(str: string): string {
-	return str.replace(/(\w)(\w*)/g, (g0, g1, g2) => {
+	return str.replace(/(\w)(\w*)/g, (_, g1, g2) => {
 		return g1.toUpperCase() + g2.toLowerCase();
 	});
 }
@@ -19,12 +19,11 @@ async function writeTableTypes(tableName: string, data) {
 		return;
 	}
 	const pcaseName = toPascalCase(tableName);
-	let buffer: string = 'export interface Row {\n';
+	let buffer: string = 'export interface Job {\n';
 	Object.entries(data[0]).forEach(([key, value]) => {
 		buffer += `\t${key}: ${typeof value};\n`;
 	});
-	buffer += '}\n\n';
-	buffer += `export type ${pcaseName} = Row[];`;
+	buffer += '}';
 	try {
 		const typesFilePath = `src/lib/db${pcaseName}.types.ts`;
 		pathExists(typesFilePath, exists => {
