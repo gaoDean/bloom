@@ -28,16 +28,6 @@ export const filters: Filter[] = [
 		],
 	},
 	{
-		id: 'time',
-		name: 'Time',
-		type: 'checkbox',
-		active: 'false',
-		list: [
-			{ text: 'Morning', checked: true },
-			{ text: 'Afternoon', checked: true },
-		],
-	},
-	{
 		id: 'salary',
 		name: 'Salary',
 		type: 'checkbox',
