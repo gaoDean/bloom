@@ -16,7 +16,7 @@ export const filters: Filter[] = [
 		id: 'days',
 		name: 'Days',
 		type: 'checkbox',
-		class: 'filter-days',
+		active: 'false',
 		list: [
 			{ text: 'Monday', checked: true },
 			{ text: 'Tuesday', checked: true },
@@ -31,7 +31,7 @@ export const filters: Filter[] = [
 		id: 'time',
 		name: 'Time',
 		type: 'checkbox',
-		class: 'filter-time',
+		active: 'false',
 		list: [
 			{ text: 'Morning', checked: true },
 			{ text: 'Afternoon', checked: true },
@@ -41,7 +41,7 @@ export const filters: Filter[] = [
 		id: 'salary',
 		name: 'Salary',
 		type: 'checkbox',
-		class: 'filter-salary',
+		active: 'false',
 		list: [
 			{ text: 'Payed', checked: true },
 			{ text: 'Volunteer', checked: false },

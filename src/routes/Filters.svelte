@@ -9,15 +9,14 @@ let lastChangedFilterIndex = -1;
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function optionChanged(_reactiveAssignment: Filter[]) {
-	if (lastChangedFilterIndex >= 0 && lastChangedFilterIndex < filters.length) {
-		const defaultClass = `filter-${filters[lastChangedFilterIndex].id}`;
+	if (lastChangedFilterIndex >= 0) {
 		if (
 			JSON.stringify(filters[lastChangedFilterIndex].list) !==
 			JSON.stringify(defaultFilters[lastChangedFilterIndex].list)
 		) {
-			filters[lastChangedFilterIndex].class = `${defaultClass} filter-changed`;
+			filters[lastChangedFilterIndex].active = 'true';
 		} else {
-			filters[lastChangedFilterIndex].class = defaultClass;
+			filters[lastChangedFilterIndex].active = 'false';
 		}
 	}
 }
@@ -29,11 +28,10 @@ $: optionChanged(filters);
 	{#each filters as filter, filterIndex}
 		<div>
 			<details
-				id="filter-{filter.id}"
 				role="list"
 				class="filter filter-{filter.id}-container"
 			>
-				<summary class={filter.class} aria-haspopup="listbox"
+				<summary class="filter-{filter.id}" aria-haspopup="listbox" filter-active={filter.active}
 					><small>{filter.name}</small>
 				</summary>
 				<ul role="listbox">
@@ -96,8 +94,8 @@ $: optionChanged(filters);
 	box-shadow: none !important;
 }
 
-.filter-changed {
-	border-color: var(--primary) !important;
+summary[filter-active='true'] {
+	/* border-color: var(--primary) !important; */
 	color: var(--primary) !important;
 }
 
