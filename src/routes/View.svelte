@@ -38,9 +38,11 @@ $: displayJobs = getDisplayJobs(jobs, filters);
 		</ul>
 		<p class="long-desc">{job.description}</p>
 		<p>
-			<em>{job.location}</em>
+			<em>From {formatTime(job.from)} to {formatTime(job.to)}.</em>
 			<br />
-			<em>{job.days}: from {formatTime(job.from)} to {formatTime(job.to)}.</em>
+			<em>{job.days}</em>
+			<br />
+			<em>{job.location}</em>
 		</p>
 		<div class="button-container">
 			<button class="button">Apply</button>
