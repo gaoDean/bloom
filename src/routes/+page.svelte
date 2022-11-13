@@ -21,7 +21,7 @@ let selectedJob: Job;
 <Navbar />
 <main class="container">
 	<div class="filter-component-container">
-		<Filters bind:filters={filters} />
+		<Filters bind:filters />
 	</div>
 	<div class="content">
 		<View jobs={jobs} bind:selected={selectedJob} filters={filters} />

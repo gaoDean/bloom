@@ -2,7 +2,7 @@
 import { type Filter, deepClone } from './filters.js';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function optionChanged(filters: Filter[], lastChangedFilterIndex: number) {
+function optionChanged(filters: Filter[], defaultFilters: Filter[], lastChangedFilterIndex: number) {
 	if (lastChangedFilterIndex >= 0) {
 		if (
 			JSON.stringify(filters[lastChangedFilterIndex].list) !==
@@ -21,7 +21,7 @@ export let filters: Filter[];
 const defaultFilters: Filter[] = deepClone(filters);
 let lastChangedFilterIndex: number = -1;
 
-$: optionChanged(filters, lastChangedFilterIndex);
+$: optionChanged(filters, defaultFilters, lastChangedFilterIndex);
 </script>
 
 <div class="filter-container">

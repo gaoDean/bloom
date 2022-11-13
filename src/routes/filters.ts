@@ -31,8 +31,8 @@ export const filters: Filter[] = [
 			{ text: 'Sunday', checked: true },
 		],
 		checker: (field: string, activeChecks: string[]) => {
-			for (const check of activeChecks) {
-				if (new RegExp(check).test(field)) {
+			for (let checkIndex = 0; checkIndex < activeChecks.length; ++checkIndex) {
+				if (new RegExp(activeChecks[checkIndex]).test(field)) {
 					return true;
 				}
 			}
@@ -60,10 +60,10 @@ export const filters: Filter[] = [
 			{ text: 'Volunteer', checked: false },
 		],
 		checker: (field: number, activeChecks: string[]) => {
-			for (const check of activeChecks) {
-				if (field > 0 && check === 'Payed') {
+			for (let checkIndex = 0; checkIndex < activeChecks.length; ++checkIndex) {
+				if (field > 0 && activeChecks[checkIndex] === 'Payed') {
 					return true;
-				}	else if (field === 0 && check === 'Volunteer') {
+				} if (field === 0 && activeChecks[checkIndex] === 'Volunteer') {
 					return true;
 				}
 			}
@@ -72,15 +72,12 @@ export const filters: Filter[] = [
 	},
 ];
 
-function applyFilter(
-	job: Job,
-	filter: Filter,
-): boolean {
+function applyFilter(job: Job, filter: Filter): boolean {
 	const field: unknown = job[filter.id];
-	let checksBuffer: string[] = [];
-	for (const check of filter.list) {
-		if (check.checked) {
-			checksBuffer.push(check.text);
+	const checksBuffer: string[] = [];
+	for (let checkIndex = 0; checkIndex < filter.list.length; ++checkIndex) {
+		if (filter.list[checkIndex].checked) {
+			checksBuffer.push(filter.list[checkIndex].text);
 		}
 	}
 	if (!checksBuffer) {
@@ -89,9 +86,9 @@ function applyFilter(
 	return filter.checker(field, checksBuffer);
 }
 
-export function passesFilters(job: Job, newFilters: Filter[]): boolean {
-	for (const filter of newFilters) {
-		if (!applyFilter(job, filter)) {
+export function passesFilters(job: Job, runtimeFilters: Filter[]): boolean {
+	for (let filterIndex = 0; filterIndex < runtimeFilters.length; ++filterIndex) {
+		if (!applyFilter(job, runtimeFilters[filterIndex])) {
 			return false;
 		}
 	}

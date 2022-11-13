@@ -26,7 +26,9 @@ module.exports = {
 	},
 	rules: {
 		'no-tabs': 'off',
+		'no-plusplus': 'off',
 		'no-return-assign': 'warn',
+		'no-param-reassign': 'warn',
 		'import/no-unresolved': 'off',
 		'import/prefer-default-export': 'warn',
 		'import/no-mutable-exports': 'warn',
