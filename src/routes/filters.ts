@@ -11,6 +11,8 @@ export interface Filter {
 	type: string;
 	class: string;
 	list: FilterOption[];
+	fieldType: string;
+	checker: (field: any, activeChecks: string[]) => boolean;
 }
 
 export const filters: Filter[] = [
@@ -28,6 +30,14 @@ export const filters: Filter[] = [
 			{ text: 'Saturday', checked: true },
 			{ text: 'Sunday', checked: true },
 		],
+		checker: (field: string, activeChecks: string[]) => {
+			for (const check of activeChecks) {
+				if (new RegExp(check).test(field)) {
+					return true;
+				}
+			}
+			return false;
+		},
 	},
 	{
 		id: 'time',
@@ -38,6 +48,7 @@ export const filters: Filter[] = [
 			{ text: 'Morning', checked: true },
 			{ text: 'Afternoon', checked: true },
 		],
+		checker: () => true,
 	},
 	{
 		id: 'salary',
@@ -48,63 +59,43 @@ export const filters: Filter[] = [
 			{ text: 'Payed', checked: true },
 			{ text: 'Volunteer', checked: false },
 		],
+		checker: (field: number, activeChecks: string[]) => {
+			for (const check of activeChecks) {
+				if (field > 0 && check === 'Payed') {
+					return true;
+				}	else if (field === 0 && check === 'Volunteer') {
+					return true;
+				}
+			}
+			return false;
+		},
 	},
 ];
 
 function applyFilter(
 	job: Job,
 	filter: Filter,
-	valType: string,
-	cmpFunc: (val: any, checks: string[]) => boolean,
-) {
-	const val = job[filter.id];
-	if (typeof val !== valType) {
-		return false;
-	}
+): boolean {
+	const field: unknown = job[filter.id];
 	let checksBuffer: string[] = [];
 	for (const check of filter.list) {
 		if (check.checked) {
-			checksBuffer.push(check);
+			checksBuffer.push(check.text);
 		}
 	}
 	if (!checksBuffer) {
 		return false;
 	}
-	return cmpFunc(val, checksBuffer);
+	return filter.checker(field, checksBuffer);
 }
 
 export function passesFilters(job: Job, newFilters: Filter[]): boolean {
 	for (const filter of newFilters) {
-		let cmpFunc: (val: any, checks: string[]) => boolean;
-		let valType: string;
-		if ((newFilters.id = 'days')) {
-			valType = 'string';
-			cmpFunc = (days: string, checks: string[]) => {
-				for (const check of checks) {
-					if (new RegExp(check).test(days)) {
-						return true;
-					}
-				}
-				return false;
-			};
-		} else if ((newFilters.id = 'salary')) {
-			valType = 'number';
-			cmpFunc = (salary: number, checks: string[]) => {
-				for (const check of checks) {
-					if (salary > 0 && check === 'Payed') {
-						return true;
-					}	else if (salary === 0 && check === 'Volunteer') {
-						return true;
-					}
-				}
-				return false;
-			};
-		}
-		if (applyFilter(job, filter, valType, cmpFunc)) {
-			return true;
+		if (!applyFilter(job, filter)) {
+			return false;
 		}
 	}
-	return false;
+	return true;
 }
 
 export function deepClone(filterArray: Filter[]): Filter[] {

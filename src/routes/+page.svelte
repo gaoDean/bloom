@@ -4,7 +4,9 @@ import Filters from './Filters.svelte';
 import View from './View.svelte';
 import Description from './Description.svelte';
 import { type Job } from '$lib/dbJobsTypes.ts'; // eslint-disable-line
-import { filters } from './filters.js';
+import { filters as immutableFilters } from './filters.js';
+
+let filters = immutableFilters;
 
 /** @type {import('./$types').PageData} */
 export let data: { post: Job[] };
@@ -19,10 +21,10 @@ let selectedJob: Job;
 <Navbar />
 <main class="container">
 	<div class="filter-component-container">
-		<Filters filters={filters} />
+		<Filters bind:filters={filters} />
 	</div>
 	<div class="content">
-		<View jobs={jobs} filters={filters} bind:selected={selectedJob} />
+		<View jobs={jobs} bind:selected={selectedJob} filters={filters} />
 	</div>
 </main>
 

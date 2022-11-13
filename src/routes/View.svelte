@@ -5,13 +5,15 @@ import { listToArray, formatTime } from '$lib/jobDisplayFunctions.js';
 import { type Filter, passesFilters} from './filters.js';
 
 function getDisplayJobs(allJobs: Job[], filters: Filter[]): Job[] {
+	const maxIters = 50;
 	let jobBuffer: Job[] = [];
-	for (const job of allJobs) {
-		if (passesFilters(job, filters)) {
+	for (const [i, job] of allJobs.entries()) {
+		if (i >= maxIters) {
+			break;
+		} else if (passesFilters(job, filters)) {
 			jobBuffer.push(job);
 		}
 	}
-	console.log(jobBuffer);
 	return jobBuffer;
 }
 
