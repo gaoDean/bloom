@@ -21,7 +21,7 @@ export let filters: Filter[];
 const defaultFilters: Filter[] = deepClone(filters);
 let lastChangedFilterIndex: number = -1;
 
-$: optionChanged(filters);
+$: optionChanged(filters, lastChangedFilterIndex);
 </script>
 
 <div class="filter-container">
