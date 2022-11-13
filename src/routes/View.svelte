@@ -29,7 +29,7 @@ $: displayJobs = getDisplayJobs(jobs, filters);
 	<article>
 		<hgroup>
 			<h3 style="margin-bottom: 1rem">{job.name}</h3>
-			<p style="">{job.job}</p>
+			<p style="">{job.job} - ${job.salary} an hour</p>
 		</hgroup>
 		<ul>
 			{#each listToArray(job.short) as descLine}

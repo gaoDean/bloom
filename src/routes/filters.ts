@@ -63,7 +63,8 @@ export const filters: Filter[] = [
 			for (let checkIndex = 0; checkIndex < activeChecks.length; ++checkIndex) {
 				if (field > 0 && activeChecks[checkIndex] === 'Payed') {
 					return true;
-				} if (field === 0 && activeChecks[checkIndex] === 'Volunteer') {
+				}
+				if (field === 0 && activeChecks[checkIndex] === 'Volunteer') {
 					return true;
 				}
 			}
@@ -87,7 +88,11 @@ function applyFilter(job: Job, filter: Filter): boolean {
 }
 
 export function passesFilters(job: Job, runtimeFilters: Filter[]): boolean {
-	for (let filterIndex = 0; filterIndex < runtimeFilters.length; ++filterIndex) {
+	for (
+		let filterIndex = 0;
+		filterIndex < runtimeFilters.length;
+		++filterIndex
+	) {
 		if (!applyFilter(job, runtimeFilters[filterIndex])) {
 			return false;
 		}
