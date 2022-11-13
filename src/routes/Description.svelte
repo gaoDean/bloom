@@ -25,13 +25,12 @@ export let selected: Job;
 		</ul>
 		<p>{selected.description}</p>
 		<p>
-			<em>{selected.location}</em>
+			<em>From {formatTime(selected.from)} to {formatTime(selected.to)}</em>
 			<br />
-			<em
-				>{selected.days}: from {formatTime(selected.from)} to {formatTime(
-					selected.to,
-				)}.</em
-			>
+			<em>{selected.days}</em>
+			<br />
+			<br />
+			<em>{selected.location}</em>
 		</p>
 		<button class="button" style="margin-top: 2rem">Apply</button>
 	</article>

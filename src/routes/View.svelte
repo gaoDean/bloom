@@ -38,7 +38,7 @@ $: displayJobs = getDisplayJobs(jobs, filters);
 		</ul>
 		<p class="long-desc">{job.description}</p>
 		<p>
-			<em>From {formatTime(job.from)} to {formatTime(job.to)}.</em>
+			<em>From {formatTime(job.from)} to {formatTime(job.to)}</em>
 			<br />
 			<em>{job.days}</em>
 			<br />
