@@ -2,14 +2,30 @@
 import { type Job } from '$lib/dbJobsTypes.js';
 import '$lib/jobDescription.css';
 import { listToArray, formatTime } from '$lib/jobDisplayFunctions.js';
-/* import { type Filter } from './filters.js'; */
+import { type Filter, passesFilters } from './filters.js';
+
+function getDisplayJobs(allJobs: Job[], filters: Filter[]): Job[] {
+	const maxIters = 50;
+	const jobBuffer: Job[] = [];
+	for (let jobIndex = 0; jobIndex < allJobs.length; ++jobIndex) {
+		if (jobIndex >= maxIters) {
+			break;
+		}
+		if (passesFilters(allJobs[jobIndex], filters)) {
+			jobBuffer.push(allJobs[jobIndex]);
+		}
+	}
+	return jobBuffer;
+}
 
 export let jobs: Job[];
 export let selected: Job;
-/* export let filters: Filter[]; */
+export let filters: Filter[];
+
+$: displayJobs = getDisplayJobs(jobs, filters);
 </script>
 
-{#each jobs as job}
+{#each displayJobs as job}
 	<article>
 		<hgroup>
 			<h3 style="margin-bottom: 1rem">{job.name}</h3>
