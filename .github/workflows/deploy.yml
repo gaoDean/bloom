@@ -5,7 +5,7 @@ name: Deploy Nightly
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * 1-7'
+    - cron: '0 0 * * 1-5'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
