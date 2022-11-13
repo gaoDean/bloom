@@ -1,14 +1,8 @@
 <script lang="ts">
 import { type Filter, deepClone } from './filters.js';
 
-export let filters: Filter[];
-
-// create a complete clone
-const defaultFilters: Filter[] = deepClone(filters);
-let lastChangedFilterIndex = -1;
-
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function optionChanged(_reactiveAssignment: Filter[]) {
+function optionChanged(filters: Filter[], lastChangedFilterIndex: number) {
 	if (lastChangedFilterIndex >= 0) {
 		if (
 			JSON.stringify(filters[lastChangedFilterIndex].list) !==
@@ -21,17 +15,23 @@ function optionChanged(_reactiveAssignment: Filter[]) {
 	}
 }
 
+export let filters: Filter[];
+
+// create a complete clone
+const defaultFilters: Filter[] = deepClone(filters);
+let lastChangedFilterIndex: number = -1;
+
 $: optionChanged(filters);
 </script>
 
 <div class="filter-container">
 	{#each filters as filter, filterIndex}
 		<div>
-			<details
-				role="list"
-				class="filter filter-{filter.id}-container"
-			>
-				<summary class="filter-{filter.id}" aria-haspopup="listbox" filter-active={filter.active}
+			<details role="list" class="filter filter-{filter.id}-container">
+				<summary
+					class="filter-{filter.id}"
+					aria-haspopup="listbox"
+					filter-active={filter.active}
 					><small>{filter.name}</small>
 				</summary>
 				<ul role="listbox">
