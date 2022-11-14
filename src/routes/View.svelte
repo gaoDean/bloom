@@ -21,7 +21,7 @@ function getDisplayJobs(allJobs: Job[], filters: Filter[], search: string): Job[
 	);
 
 	const results = fuzzysort.go(search, jobBuffer, {
-		keys: ['name', 'job', 'salary'],
+		keys: ['name', 'job', 'salary', 'location'],
 		all: true,
 		limit: 20,
 	});
