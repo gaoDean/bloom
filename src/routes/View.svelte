@@ -19,17 +19,24 @@ function getDisplayJobs(allJobs: Job[], filters: Filter[], search: string): Job[
 	jobBuffer.sort((a: Job, b: Job) =>
 		a.updated_at.getTime() < b.updated_at.getTime() ? 1 : -1,
 	);
-	/**/
-	/* const results = fuzzysort.go( */
-	return jobBuffer;
+
+	const results = fuzzysort.go(search, jobBuffer, {
+		keys: ['name', 'job', 'salary'],
+		all: true,
+		limit: 20,
+	});
+	for (let i = 0; i < results.length; ++i) {
+		results[i] = results[i].obj;
+	}
+	return results;
 }
 
-export let search: string;
+export let search: string = '';
 export let jobs: Job[];
 export let selectedJob: Job;
 export let filters: Filter[];
 
-$: displayJobs = getDisplayJobs(jobs, filters);
+$: displayJobs = getDisplayJobs(jobs, filters, search);
 </script>
 
 {#each displayJobs as job}
