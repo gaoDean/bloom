@@ -15,7 +15,7 @@ function getDisplayJobs(allJobs: Job[], filters: Filter[]): Job[] {
 			jobBuffer.push(allJobs[jobIndex]);
 		}
 	}
-	jobBuffer.sort((a: Job, b: Job) => (a.inserted_at.getTime() > b.inserted_at.getTime() ? 1 : -1));
+	jobBuffer.sort((a: Job, b: Job) => (a.updated_at.getTime() < b.updated_at.getTime() ? 1 : -1));
 	return jobBuffer;
 }
 

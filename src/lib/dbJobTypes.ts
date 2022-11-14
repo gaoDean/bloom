@@ -10,4 +10,5 @@ export interface Job {
 	salary: number;
 	description: string;
 	short: string;
+	updated_at: object;
 }

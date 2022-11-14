@@ -13,6 +13,8 @@ export let data: { post: Job[] };
 
 const jobs: Job[] = data.post;
 let selectedJob: Job;
+
+console.log(jobs);
 </script>
 
 {#if selectedJob}

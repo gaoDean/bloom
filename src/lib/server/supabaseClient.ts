@@ -17,6 +17,7 @@ export const client = createClient(
 function formatData(data: any) {
 	Object.values(data).forEach((row) => {
 		row.inserted_at = new Date(row.inserted_at);
+		row.updated_at = new Date(row.updated_at);
 	});
 }
 
