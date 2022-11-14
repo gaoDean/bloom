@@ -38,6 +38,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@supabase/supabase-js": "2"
+		"@supabase/supabase-js": "2",
+		"fuzzysort": "^2.0.3"
 	}
 }

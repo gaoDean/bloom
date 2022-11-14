@@ -1,10 +1,11 @@
 <script lang="ts">
+import fuzzysort from 'fuzzysort';
 import { type Job } from '$lib/dbJobTypes.js';
 import '$lib/jobDescription.css';
 import { listToArray, formatTime } from '$lib/jobDisplayFunctions.js';
 import { type Filter, passesFilters } from './filters.js';
 
-function getDisplayJobs(allJobs: Job[], filters: Filter[]): Job[] {
+function getDisplayJobs(allJobs: Job[], filters: Filter[], search: string): Job[] {
 	const maxIters = 50;
 	const jobBuffer: Job[] = [];
 	for (let jobIndex = 0; jobIndex < allJobs.length; ++jobIndex) {
@@ -18,9 +19,12 @@ function getDisplayJobs(allJobs: Job[], filters: Filter[]): Job[] {
 	jobBuffer.sort((a: Job, b: Job) =>
 		a.updated_at.getTime() < b.updated_at.getTime() ? 1 : -1,
 	);
+	/**/
+	/* const results = fuzzysort.go( */
 	return jobBuffer;
 }
 
+export let search: string;
 export let jobs: Job[];
 export let selectedJob: Job;
 export let filters: Filter[];

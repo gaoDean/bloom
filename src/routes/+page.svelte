@@ -13,20 +13,19 @@ export let data: { post: Job[] };
 
 const jobs: Job[] = data.post;
 let selectedJob: Job;
-
-console.log(jobs);
+let search: string;
 </script>
 
 {#if selectedJob}
 	<Description bind:job={selectedJob} />
 {/if}
-<Navbar />
+<Navbar bind:search />
 <main class="container">
 	<div class="filter-component-container">
 		<Filters bind:filters />
 	</div>
 	<div class="content">
-		<View jobs={jobs} bind:selectedJob filters={filters} />
+		<View {search} {jobs} bind:selectedJob {filters} />
 	</div>
 </main>
 

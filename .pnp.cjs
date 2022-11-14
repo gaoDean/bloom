@@ -40,6 +40,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-config-prettier", "virtual:94da2977de1030ff3b75d307d3a1d89c1609cff81e8e3f58038d78564bad2068c3113b00cd523c51e42a0c925dc28b3194de9f4511e8cfc7300da84ef5c6cd39#npm:8.5.0"],\
             ["eslint-plugin-import", "virtual:94da2977de1030ff3b75d307d3a1d89c1609cff81e8e3f58038d78564bad2068c3113b00cd523c51e42a0c925dc28b3194de9f4511e8cfc7300da84ef5c6cd39#npm:2.26.0"],\
             ["eslint-plugin-svelte3", "virtual:94da2977de1030ff3b75d307d3a1d89c1609cff81e8e3f58038d78564bad2068c3113b00cd523c51e42a0c925dc28b3194de9f4511e8cfc7300da84ef5c6cd39#npm:4.0.0"],\
+            ["fuzzysort", "npm:2.0.3"],\
             ["prettier", "npm:2.7.1"],\
             ["prettier-plugin-svelte", "virtual:94da2977de1030ff3b75d307d3a1d89c1609cff81e8e3f58038d78564bad2068c3113b00cd523c51e42a0c925dc28b3194de9f4511e8cfc7300da84ef5c6cd39#npm:2.8.0"],\
             ["sass", "npm:1.55.0"],\
@@ -1006,6 +1007,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-config-prettier", "virtual:94da2977de1030ff3b75d307d3a1d89c1609cff81e8e3f58038d78564bad2068c3113b00cd523c51e42a0c925dc28b3194de9f4511e8cfc7300da84ef5c6cd39#npm:8.5.0"],\
             ["eslint-plugin-import", "virtual:94da2977de1030ff3b75d307d3a1d89c1609cff81e8e3f58038d78564bad2068c3113b00cd523c51e42a0c925dc28b3194de9f4511e8cfc7300da84ef5c6cd39#npm:2.26.0"],\
             ["eslint-plugin-svelte3", "virtual:94da2977de1030ff3b75d307d3a1d89c1609cff81e8e3f58038d78564bad2068c3113b00cd523c51e42a0c925dc28b3194de9f4511e8cfc7300da84ef5c6cd39#npm:4.0.0"],\
+            ["fuzzysort", "npm:2.0.3"],\
             ["prettier", "npm:2.7.1"],\
             ["prettier-plugin-svelte", "virtual:94da2977de1030ff3b75d307d3a1d89c1609cff81e8e3f58038d78564bad2068c3113b00cd523c51e42a0c925dc28b3194de9f4511e8cfc7300da84ef5c6cd39#npm:2.8.0"],\
             ["sass", "npm:1.55.0"],\
@@ -2350,6 +2352,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/functions-have-names-npm-1.2.3-e5cf1e2208-c3f1f5ba20.zip/node_modules/functions-have-names/",\
           "packageDependencies": [\
             ["functions-have-names", "npm:1.2.3"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["fuzzysort", [\
+        ["npm:2.0.3", {\
+          "packageLocation": "./.yarn/cache/fuzzysort-npm-2.0.3-bbaee6d487-fd2bd14052.zip/node_modules/fuzzysort/",\
+          "packageDependencies": [\
+            ["fuzzysort", "npm:2.0.3"]\
           ],\
           "linkType": "HARD"\
         }]\
