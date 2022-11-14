@@ -1,4 +1,4 @@
-import { type Job } from '$lib/dbJobsTypes.js';
+import { type Job } from '$lib/dbJobTypes.js';
 
 interface FilterOption {
 	text: string;
@@ -30,14 +30,8 @@ export const filters: Filter[] = [
 			{ text: 'Saturday', checked: true },
 			{ text: 'Sunday', checked: true },
 		],
-		checker: (field: string, activeChecks: string[]) => {
-			for (let checkIndex = 0; checkIndex < activeChecks.length; ++checkIndex) {
-				if (new RegExp(activeChecks[checkIndex]).test(field)) {
-					return true;
-				}
-			}
-			return false;
-		},
+		checker: (days: string, activeChecks: string[]) =>
+			activeChecks.some((check: string) => new RegExp(check).test(days)),
 	},
 	{
 		id: 'time',
@@ -59,45 +53,32 @@ export const filters: Filter[] = [
 			{ text: 'Payed', checked: true },
 			{ text: 'Volunteer', checked: false },
 		],
-		checker: (field: number, activeChecks: string[]) => {
-			for (let checkIndex = 0; checkIndex < activeChecks.length; ++checkIndex) {
-				if (field > 0 && activeChecks[checkIndex] === 'Payed') {
+		checker: (salary: number, activeChecks: string[]) =>
+			activeChecks.some((check: string) => {
+				if (salary > 0 && check === 'Payed') {
 					return true;
 				}
-				if (field === 0 && activeChecks[checkIndex] === 'Volunteer') {
+				if (salary === 0 && check === 'Volunteer') {
 					return true;
 				}
-			}
-			return false;
-		},
+				return false;
+			}),
 	},
 ];
 
 function applyFilter(job: Job, filter: Filter): boolean {
 	const field: unknown = job[filter.id];
 	const checksBuffer: string[] = [];
-	for (let checkIndex = 0; checkIndex < filter.list.length; ++checkIndex) {
-		if (filter.list[checkIndex].checked) {
-			checksBuffer.push(filter.list[checkIndex].text);
+	filter.list.forEach((check: object) => {
+		if (check.checked) {
+			checksBuffer.push(check.text);
 		}
-	}
-	if (!checksBuffer) {
-		return false;
-	}
-	return filter.checker(field, checksBuffer);
+	});
+	return checksBuffer ? filter.checker(field, checksBuffer) : false;
 }
 
 export function passesFilters(job: Job, runtimeFilters: Filter[]): boolean {
-	for (
-		let filterIndex = 0;
-		filterIndex < runtimeFilters.length;
-		++filterIndex
-	) {
-		if (!applyFilter(job, runtimeFilters[filterIndex])) {
-			return false;
-		}
-	}
-	return true;
+	return runtimeFilters.every((filter: Filter) => applyFilter(job, filter));
 }
 
 export function deepClone(filterArray: Filter[]): Filter[] {

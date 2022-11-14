@@ -1,36 +1,42 @@
 import { createClient } from '@supabase/supabase-js';
 import { env } from '$env/dynamic/public';
 import { error as svelteError } from '@sveltejs/kit';
-import { promises as fsPromises, exists as pathExists } from 'fs';
+import { promises as fsPromises, exists as pathExists, readFile } from 'fs';
 
 export const client = createClient(
 	env.PUBLIC_SUPABASE_URL,
 	env.PUBLIC_SUPABASE_ANON_KEY,
 );
 
-function toPascalCase(str: string): string {
-	return str.replace(/(\w)(\w*)/g, (_, g1, g2) => {
-		return g1.toUpperCase() + g2.toLowerCase();
+// function toPascalCase(str: string): string {
+// 	return str.replace(/(\w)(\w*)/g, (_, g1, g2) => {
+// 		return g1.toUpperCase() + g2.toLowerCase();
+// 	});
+// }
+
+function formatData(data: any) {
+	Object.values(data).forEach(row => {
+		row.inserted_at = new Date(row.inserted_at);
+		row.updated_at = new Date(row.updated_at);
 	});
 }
 
-async function writeTableTypes(tableName: string, data) {
+async function writeTableTypes(tableName: string, data: any) {
 	if (!tableName || !data) {
 		return;
 	}
-	const pcaseName = toPascalCase(tableName);
 	let buffer: string = 'export interface Job {\n';
 	Object.entries(data[0]).forEach(([key, value]) => {
 		buffer += `\t${key}: ${typeof value};\n`;
 	});
-	buffer += '}';
+	buffer += '}\n';
 	try {
-		const typesFilePath = `src/lib/db${pcaseName}.types.ts`;
-		pathExists(typesFilePath, exists => {
+		const typesFilePath = `src/lib/dbJobTypes.ts`;
+		pathExists(typesFilePath, async exists => {
 			if (exists) {
-				fsPromises.writeFile(typesFilePath, buffer, {
-					flag: 'w',
-				});
+				if ((await fsPromises.readFile(typesFilePath)) != buffer) {
+					fsPromises.writeFile(typesFilePath, buffer);
+				}
 			}
 		});
 	} catch (err) {
@@ -54,8 +60,9 @@ export async function getPost(table: string) {
 		}
 
 		if (data) {
+			formatData(data);
 			// generates code for typescript interfaces
-			await writeTableTypes(table, data);
+			writeTableTypes(table, data);
 
 			return data;
 		}

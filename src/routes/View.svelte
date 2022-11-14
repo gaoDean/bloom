@@ -1,5 +1,5 @@
 <script lang="ts">
-import { type Job } from '$lib/dbJobsTypes.js';
+import { type Job } from '$lib/dbJobTypes.js';
 import '$lib/jobDescription.css';
 import { listToArray, formatTime } from '$lib/jobDisplayFunctions.js';
 import { type Filter, passesFilters } from './filters.js';
@@ -15,11 +15,14 @@ function getDisplayJobs(allJobs: Job[], filters: Filter[]): Job[] {
 			jobBuffer.push(allJobs[jobIndex]);
 		}
 	}
+	jobBuffer.sort((a: Job, b: Job) =>
+		a.updated_at.getTime() < b.updated_at.getTime() ? 1 : -1,
+	);
 	return jobBuffer;
 }
 
 export let jobs: Job[];
-export let selected: Job;
+export let selectedJob: Job;
 export let filters: Filter[];
 
 $: displayJobs = getDisplayJobs(jobs, filters);
@@ -48,7 +51,7 @@ $: displayJobs = getDisplayJobs(jobs, filters);
 			<button class="button">Apply</button>
 			<button
 				class="button outline secondary button-info"
-				on:click={() => (selected = job)}
+				on:click={() => (selectedJob = job)}
 			>
 				Info
 			</button>

@@ -1,6 +1,6 @@
 export interface Job {
 	id: number;
-	inserted_at: string;
+	inserted_at: object;
 	name: string;
 	job: string;
 	location: string;
@@ -10,4 +10,5 @@ export interface Job {
 	salary: number;
 	description: string;
 	short: string;
+	updated_at: object;
 }

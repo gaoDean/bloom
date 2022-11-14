@@ -3,7 +3,7 @@ import Navbar from './Navbar.svelte';
 import Filters from './Filters.svelte';
 import View from './View.svelte';
 import Description from './Description.svelte';
-import { type Job } from '$lib/dbJobsTypes.ts'; // eslint-disable-line
+import { type Job } from '$lib/dbJobTypes.ts'; // eslint-disable-line
 import { filters as immutableFilters } from './filters.js';
 
 let filters = immutableFilters;
@@ -13,10 +13,12 @@ export let data: { post: Job[] };
 
 const jobs: Job[] = data.post;
 let selectedJob: Job;
+
+console.log(jobs);
 </script>
 
 {#if selectedJob}
-	<Description bind:selected={selectedJob} />
+	<Description bind:job={selectedJob} />
 {/if}
 <Navbar />
 <main class="container">
@@ -24,7 +26,7 @@ let selectedJob: Job;
 		<Filters bind:filters />
 	</div>
 	<div class="content">
-		<View jobs={jobs} bind:selected={selectedJob} filters={filters} />
+		<View jobs={jobs} bind:selectedJob filters={filters} />
 	</div>
 </main>
 

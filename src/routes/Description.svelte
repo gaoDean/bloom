@@ -1,9 +1,13 @@
 <script lang="ts">
-import { type Job } from '$lib/dbJobsTypes.js';
+import { type Job } from '$lib/dbJobTypes.js';
 import { listToArray, formatTime } from '$lib/jobDisplayFunctions.js';
 import '$lib/jobDescription.css';
 
-export let selected: Job;
+function getFormattedDate(date: Date): Date {
+	return `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`;
+}
+
+export let job: Job;
 </script>
 
 <dialog open>
@@ -11,26 +15,27 @@ export let selected: Job;
 		<header style="margin-bottom: 2rem">
 			<button
 				class="secondary outline close"
-				on:click={() => (selected = undefined)}
+				on:click={() => (job = undefined)}
 			/>
 			<h3 style="margin-bottom: 0; padding-bottom: 1rem;">
-				{selected.name}
+				{job.name}
 			</h3>
-			<p style="margin-bottom: 0">{selected.job}</p>
+			<p style="display: inline">{job.job} - ${job.salary} an hour</p>
+			<p style="float: right">Updated {getFormattedDate(job.updated_at)}</p>
 		</header>
 		<ul>
-			{#each listToArray(selected.short) as descLine}
+			{#each listToArray(job.short) as descLine}
 				<li><strong>{descLine.replace(/- /, '')}</strong></li>
 			{/each}
 		</ul>
-		<p>{selected.description}</p>
+		<p>{job.description}</p>
 		<p>
-			<em>From {formatTime(selected.from)} to {formatTime(selected.to)}</em>
+			<em>From {formatTime(job.from)} to {formatTime(job.to)}</em>
 			<br />
-			<em>{selected.days}</em>
+			<em>{job.days}</em>
 			<br />
 			<br />
-			<em>{selected.location}</em>
+			<em>{job.location}</em>
 		</p>
 		<button class="button" style="margin-top: 2rem">Apply</button>
 	</article>
