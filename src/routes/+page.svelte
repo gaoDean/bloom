@@ -3,7 +3,7 @@ import Navbar from './Navbar.svelte';
 import Filters from './Filters.svelte';
 import View from './View.svelte';
 import Description from './Description.svelte';
-import { type Job } from '$lib/dbJobsTypes.ts'; // eslint-disable-line
+import { type Job } from '$lib/dbJobTypes.ts'; // eslint-disable-line
 import { filters as immutableFilters } from './filters.js';
 
 let filters = immutableFilters;

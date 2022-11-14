@@ -1,4 +1,4 @@
-import { type Job } from '$lib/dbJobsTypes.js';
+import { type Job } from '$lib/dbJobTypes.js';
 
 interface FilterOption {
 	text: string;

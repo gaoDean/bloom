@@ -8,25 +8,37 @@ export const client = createClient(
 	env.PUBLIC_SUPABASE_ANON_KEY,
 );
 
-function toPascalCase(str: string): string {
-	return str.replace(/(\w)(\w*)/g, (_, g1, g2) => {
-		return g1.toUpperCase() + g2.toLowerCase();
-	});
+// function toPascalCase(str: string): string {
+// 	return str.replace(/(\w)(\w*)/g, (_, g1, g2) => {
+// 		return g1.toUpperCase() + g2.toLowerCase();
+// 	});
+// }
+
+function timestampToDate(time: string): Date {
+	time = time.replace(/\s/, 'T') + 'Z';
+	const iso: Date = new Date(time);
+	return iso;
 }
 
-async function writeTableTypes(tableName: string, data) {
+function formatData(data: any) {
+	for (let row = 0; row < data.length; ++data) {
+		data[row].inserted_at = timestampToDate(data[row].inserted_at);
+	}
+}
+
+async function writeTableTypes(tableName: string, data: any) {
 	if (!tableName || !data) {
 		return;
 	}
-	const pcaseName = toPascalCase(tableName);
 	let buffer: string = 'export interface Job {\n';
 	Object.entries(data[0]).forEach(([key, value]) => {
 		buffer += `\t${key}: ${typeof value};\n`;
 	});
-	buffer += '}';
+	buffer += '}\n';
 	try {
-		const typesFilePath = `src/lib/db${pcaseName}.types.ts`;
-		pathExists(typesFilePath, exists => {
+		const typesFilePath = `src/lib/dbJobTypes.ts`;
+		console.log(typesFilePath);
+		pathExists(typesFilePath, (exists) => {
 			if (exists) {
 				fsPromises.writeFile(typesFilePath, buffer, {
 					flag: 'w',
@@ -54,8 +66,9 @@ export async function getPost(table: string) {
 		}
 
 		if (data) {
+			formatData(data);
 			// generates code for typescript interfaces
-			await writeTableTypes(table, data);
+			writeTableTypes(table, data);
 
 			return data;
 		}

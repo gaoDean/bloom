@@ -1,5 +1,5 @@
 <script lang="ts">
-import { type Job } from '$lib/dbJobsTypes.js';
+import { type Job } from '$lib/dbJobTypes.js';
 import { listToArray, formatTime } from '$lib/jobDisplayFunctions.js';
 import '$lib/jobDescription.css';
 
