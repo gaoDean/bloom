@@ -19,7 +19,12 @@ export let search;
 	</ul>
 	<ul style="flex: 1; justify-content: center">
 		<li class="search-container">
-			<input type="search" id="search" placeholder="Search..." bind:value={search} />
+			<input
+				type="search"
+				id="search"
+				placeholder="Search..."
+				bind:value={search}
+			/>
 		</li>
 	</ul>
 	<ul class="profile">

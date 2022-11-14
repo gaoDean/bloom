@@ -5,7 +5,11 @@ import '$lib/jobDescription.css';
 import { listToArray, formatTime } from '$lib/jobDisplayFunctions.js';
 import { type Filter, passesFilters } from './filters.js';
 
-function getDisplayJobs(allJobs: Job[], filters: Filter[], search: string): Job[] {
+function getDisplayJobs(
+	allJobs: Job[],
+	filters: Filter[],
+	search: string,
+): Job[] {
 	const maxIters = 50;
 	const jobBuffer: Job[] = [];
 	for (let jobIndex = 0; jobIndex < allJobs.length; ++jobIndex) {
