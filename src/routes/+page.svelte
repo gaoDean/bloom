@@ -16,7 +16,7 @@ let selectedJob: Job;
 </script>
 
 {#if selectedJob}
-	<Description bind:selected={selectedJob} />
+	<Description bind:job={selectedJob} />
 {/if}
 <Navbar />
 <main class="container">
@@ -24,7 +24,7 @@ let selectedJob: Job;
 		<Filters bind:filters />
 	</div>
 	<div class="content">
-		<View jobs={jobs} bind:selected={selectedJob} filters={filters} />
+		<View jobs={jobs} bind:selectedJob={selectedJob} filters={filters} />
 	</div>
 </main>
 

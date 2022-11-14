@@ -6,7 +6,7 @@ import { type Filter, passesFilters } from './filters.js';
 
 function getDisplayJobs(allJobs: Job[], filters: Filter[]): Job[] {
 	const maxIters = 50;
-	const jobBuffer: Job[] = [];
+	let jobBuffer: Job[] = [];
 	for (let jobIndex = 0; jobIndex < allJobs.length; ++jobIndex) {
 		if (jobIndex >= maxIters) {
 			break;
@@ -15,11 +15,12 @@ function getDisplayJobs(allJobs: Job[], filters: Filter[]): Job[] {
 			jobBuffer.push(allJobs[jobIndex]);
 		}
 	}
+	jobBuffer.sort((a: Job, b: Job) => (a.inserted_at.getTime() > b.inserted_at.getTime() ? 1 : -1));
 	return jobBuffer;
 }
 
 export let jobs: Job[];
-export let selected: Job;
+export let selectedJob: Job = undefined;
 export let filters: Filter[];
 
 $: displayJobs = getDisplayJobs(jobs, filters);
@@ -48,7 +49,7 @@ $: displayJobs = getDisplayJobs(jobs, filters);
 			<button class="button">Apply</button>
 			<button
 				class="button outline secondary button-info"
-				on:click={() => (selected = job)}
+				on:click={() => (selectedJob = job)}
 			>
 				Info
 			</button>

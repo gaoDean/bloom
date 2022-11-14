@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 import { env } from '$env/dynamic/public';
 import { error as svelteError } from '@sveltejs/kit';
-import { promises as fsPromises, exists as pathExists } from 'fs';
+import { promises as fsPromises, exists as pathExists, readFile } from 'fs';
 
 export const client = createClient(
 	env.PUBLIC_SUPABASE_URL,
@@ -14,16 +14,10 @@ export const client = createClient(
 // 	});
 // }
 
-function timestampToDate(time: string): Date {
-	time = time.replace(/\s/, 'T') + 'Z';
-	const iso: Date = new Date(time);
-	return iso;
-}
-
 function formatData(data: any) {
-	for (let row = 0; row < data.length; ++data) {
-		data[row].inserted_at = timestampToDate(data[row].inserted_at);
-	}
+	Object.values(data).forEach((row) => {
+		row.inserted_at = new Date(row.inserted_at);
+	});
 }
 
 async function writeTableTypes(tableName: string, data: any) {
@@ -37,12 +31,11 @@ async function writeTableTypes(tableName: string, data: any) {
 	buffer += '}\n';
 	try {
 		const typesFilePath = `src/lib/dbJobTypes.ts`;
-		console.log(typesFilePath);
-		pathExists(typesFilePath, (exists) => {
+		pathExists(typesFilePath, async (exists) => {
 			if (exists) {
-				fsPromises.writeFile(typesFilePath, buffer, {
-					flag: 'w',
-				});
+				if ((await fsPromises.readFile(typesFilePath)) != buffer) {
+					fsPromises.writeFile(typesFilePath, buffer);
+				}
 			}
 		});
 	} catch (err) {

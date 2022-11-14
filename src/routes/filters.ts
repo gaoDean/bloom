@@ -31,11 +31,11 @@ export const filters: Filter[] = [
 			{ text: 'Sunday', checked: true },
 		],
 		checker: (field: string, activeChecks: string[]) => {
-			for (let checkIndex = 0; checkIndex < activeChecks.length; ++checkIndex) {
-				if (new RegExp(activeChecks[checkIndex]).test(field)) {
+			Object.values(activeChecks).forEach((check) => {
+				if (new RegExp(check).test(field)) {
 					return true;
 				}
-			}
+			});
 			return false;
 		},
 	},
@@ -60,14 +60,14 @@ export const filters: Filter[] = [
 			{ text: 'Volunteer', checked: false },
 		],
 		checker: (field: number, activeChecks: string[]) => {
-			for (let checkIndex = 0; checkIndex < activeChecks.length; ++checkIndex) {
-				if (field > 0 && activeChecks[checkIndex] === 'Payed') {
+			Object.values(activeChecks).forEach((check) => {
+				if (field > 0 && check === 'Payed') {
 					return true;
 				}
-				if (field === 0 && activeChecks[checkIndex] === 'Volunteer') {
+				if (field === 0 && check === 'Volunteer') {
 					return true;
 				}
-			}
+			});
 			return false;
 		},
 	},
@@ -76,11 +76,11 @@ export const filters: Filter[] = [
 function applyFilter(job: Job, filter: Filter): boolean {
 	const field: unknown = job[filter.id];
 	const checksBuffer: string[] = [];
-	for (let checkIndex = 0; checkIndex < filter.list.length; ++checkIndex) {
-		if (filter.list[checkIndex].checked) {
-			checksBuffer.push(filter.list[checkIndex].text);
+	Object.values(filter.list).forEach((check) => {
+		if (check.checked) {
+			checksBuffer.push(check.text);
 		}
-	}
+	});
 	if (!checksBuffer) {
 		return false;
 	}
@@ -88,15 +88,11 @@ function applyFilter(job: Job, filter: Filter): boolean {
 }
 
 export function passesFilters(job: Job, runtimeFilters: Filter[]): boolean {
-	for (
-		let filterIndex = 0;
-		filterIndex < runtimeFilters.length;
-		++filterIndex
-	) {
-		if (!applyFilter(job, runtimeFilters[filterIndex])) {
+	Object.values(runtimeFilters).forEach((filter) => {
+		if (!applyFilter(job, filter)) {
 			return false;
 		}
-	}
+	});
 	return true;
 }
 
