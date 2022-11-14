@@ -749,6 +749,7 @@ __metadata:
     eslint-config-prettier: ^8.3.0
     eslint-plugin-import: latest
     eslint-plugin-svelte3: ^4.0.0
+    fuzzysort: ^2.0.3
     prettier: ^2.6.2
     prettier-plugin-svelte: ^2.7.0
     sass: ^1.55.0
@@ -1860,6 +1861,13 @@ __metadata:
   version: 1.2.3
   resolution: "functions-have-names@npm:1.2.3"
   checksum: c3f1f5ba20f4e962efb71344ce0a40722163e85bee2101ce25f88214e78182d2d2476aa85ef37950c579eb6cf6ee811c17b3101bb84004bb75655f3e33f3fdb5
+  languageName: node
+  linkType: hard
+
+"fuzzysort@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "fuzzysort@npm:2.0.3"
+  checksum: fd2bd14052631b12157cb10ec5df9af37642d7dadafabc2116b411904c66af3495c9ee0c8c7ba37d65b59d79aae6ac1ec0c033dd7e3212c37e5da8792793dacc
   languageName: node
   linkType: hard
 

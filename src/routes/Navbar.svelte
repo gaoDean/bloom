@@ -3,6 +3,8 @@ import logo from '$lib/img/logo.svg';
 import profile from '$lib/img/profile.svg';
 
 const rootUrl = 'https://bloomjobs.live';
+
+export let search;
 </script>
 
 <nav class="container-fluid">
@@ -17,7 +19,12 @@ const rootUrl = 'https://bloomjobs.live';
 	</ul>
 	<ul style="flex: 1; justify-content: center">
 		<li class="search-container">
-			<input type="search" id="search" placeholder="Search..." />
+			<input
+				type="search"
+				id="search"
+				placeholder="Search..."
+				bind:value={search}
+			/>
 		</li>
 	</ul>
 	<ul class="profile">
