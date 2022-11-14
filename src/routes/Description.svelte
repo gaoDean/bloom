@@ -4,7 +4,7 @@ import { listToArray, formatTime } from '$lib/jobDisplayFunctions.js';
 import '$lib/jobDescription.css';
 
 function getFormattedDate(date: Date): Date {
-	return date.getFullYear() + '/' + date.getMonth() + '/' + date.getDate();
+	return `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`;
 }
 
 export let job: Job;

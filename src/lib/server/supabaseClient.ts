@@ -15,7 +15,7 @@ export const client = createClient(
 // }
 
 function formatData(data: any) {
-	Object.values(data).forEach((row) => {
+	Object.values(data).forEach(row => {
 		row.inserted_at = new Date(row.inserted_at);
 		row.updated_at = new Date(row.updated_at);
 	});
@@ -32,7 +32,7 @@ async function writeTableTypes(tableName: string, data: any) {
 	buffer += '}\n';
 	try {
 		const typesFilePath = `src/lib/dbJobTypes.ts`;
-		pathExists(typesFilePath, async (exists) => {
+		pathExists(typesFilePath, async exists => {
 			if (exists) {
 				if ((await fsPromises.readFile(typesFilePath)) != buffer) {
 					fsPromises.writeFile(typesFilePath, buffer);

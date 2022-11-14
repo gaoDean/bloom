@@ -26,7 +26,7 @@ console.log(jobs);
 		<Filters bind:filters />
 	</div>
 	<div class="content">
-		<View jobs={jobs} bind:selectedJob={selectedJob} filters={filters} />
+		<View jobs={jobs} bind:selectedJob filters={filters} />
 	</div>
 </main>
 
