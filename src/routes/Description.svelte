@@ -21,7 +21,9 @@ export let job: Job;
 				{job.name}
 			</h3>
 			<p style="display: inline">{job.job} - ${job.salary} an hour</p>
-			<small class="updated-time">Updated {getFormattedDate(job.updated_at)}</small>
+			<small class="updated-time"
+				>Updated {getFormattedDate(job.updated_at)}</small
+			>
 		</header>
 		<ul>
 			{#each listToArray(job.short) as descLine}
