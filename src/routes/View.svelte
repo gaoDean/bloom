@@ -24,11 +24,23 @@ function getDisplayJobs(
 		a.updated_at.getTime() < b.updated_at.getTime() ? 1 : -1,
 	);
 
-	const results = fuzzysort.go(search, jobBuffer, {
-		keys: ['name', 'job', 'salary', 'location'],
+	const sortOptions = {
+		keys: ['name', 'job', 'salary', 'location', 'short', 'description'],
 		all: true,
 		limit: 20,
-	});
+		scoreFn: a => {
+			let max = -Infinity;
+			const weights: number[] = [20000, 10000, 2000, 3000, 500, 100];
+			for (let i = 0; i < weights.length; ++i) {
+				if (a[i]) {
+					a[i].score += weights[i];
+					max = a[i].score > max ? a[i].score : max;
+				}
+			}
+			return max;
+		},
+	};
+	const results: object = fuzzysort.go(search, jobBuffer, sortOptions);
 	for (let i = 0; i < results.length; ++i) {
 		results[i] = results[i].obj;
 	}
@@ -37,7 +49,7 @@ function getDisplayJobs(
 
 export let search: string = '';
 export let jobs: Job[];
-export let selectedJob: Job;
+export let selectedJob: Job = undefined; // eslint-disable-line
 export let filters: Filter[];
 
 $: displayJobs = getDisplayJobs(jobs, filters, search);
