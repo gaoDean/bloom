@@ -43,7 +43,7 @@ function getDisplayJobs(
 
 	const keyWeightPairs = {
 		name: 20000,
-		job: 10000,
+		job: 25000,
 		location: 3000,
 		short: 500,
 		description: 100,
