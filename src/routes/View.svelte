@@ -58,12 +58,12 @@ $: displayJobs = getDisplayJobs(jobs, filters, search);
 {#each displayJobs as job}
 	<article>
 		<hgroup>
-			<h3 style="margin-bottom: 1rem">{job.name}</h3>
-			<p style="">{job.job} - ${job.salary} an hour</p>
+			<h4 style="margin-bottom: 8px">{job.name}</h4>
+			<p>{job.job} - ${job.salary} an hour</p>
 		</hgroup>
 		<ul>
 			{#each listToArray(job.short) as descLine}
-				<li><strong>{descLine.replace(/- /, '')}</strong></li>
+				<li>{descLine.replace(/- /, '')}</li>
 			{/each}
 		</ul>
 		<p class="long-desc">{job.description}</p>
@@ -87,6 +87,22 @@ $: displayJobs = getDisplayJobs(jobs, filters, search);
 {/each}
 
 <style>
+article {
+	padding-top: 1.2rem;
+	padding-bottom: 1rem;
+}
+article > hgroup {
+	margin-bottom: 1rem;
+}
+hgroup > p {
+	margin-bottom: 0px;
+}
+article > ul {
+	margin-bottom: 1rem;
+}
+ul > li {
+	font-weight: bolder;
+}
 .button-container {
 	display: flex;
 	justify-content: left;
@@ -97,6 +113,9 @@ $: displayJobs = getDisplayJobs(jobs, filters, search);
 @media only screen and (max-width: 500px) {
 	.long-desc {
 		display: none;
+	}
+	ul > li {
+		font-weight: var(--font-weight);
 	}
 }
 </style>
