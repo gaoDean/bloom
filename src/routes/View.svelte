@@ -28,25 +28,23 @@ function getDisplayJobs(
 		keys: ['name', 'job', 'salary', 'location', 'short', 'description'],
 		all: true,
 		limit: 20,
-		scoreFn: (a) => {
+		scoreFn: a => {
 			let max = -Infinity;
-			const weights: number[] = [5, 4, 2, 2, 1, 0.2];
+			const weights: number[] = [20000, 10000, 2000, 3000, 500, 100];
 			for (let i = 0; i < weights.length; ++i) {
 				if (a[i]) {
-					a[i].score *= weights[i];
+					a[i].score += weights[i];
 					max = a[i].score > max ? a[i].score : max;
 				}
 			}
 			return max;
 		},
-	}
+	};
 	const results: object = fuzzysort.go(search, jobBuffer, sortOptions);
-	console.log(results);
-	let resBuffer: Job[] = [];
 	for (let i = 0; i < results.length; ++i) {
-		resBuffer[i] = results[i].obj;
+		results[i] = results[i].obj;
 	}
-	return resBuffer;
+	return results;
 }
 
 export let search: string = '';
