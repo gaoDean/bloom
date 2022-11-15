@@ -12,6 +12,8 @@ function getDisplayJobs(
 ): Job[] {
 	const maxIters = 50;
 	const jobBuffer: Job[] = [];
+	const curDate = new Date();
+
 	for (let jobIndex = 0; jobIndex < allJobs.length; ++jobIndex) {
 		if (jobIndex >= maxIters) {
 			break;
@@ -24,22 +26,36 @@ function getDisplayJobs(
 		a.updated_at.getTime() < b.updated_at.getTime() ? 1 : -1,
 	);
 
+	function getScore(a: object, weights: number[]): number {
+		const msInDay = 1000 * 60 * 60 * 24;
+		const daysOld = 5;
+		let max = -Infinity;
+		for (let i = 0; i < weights.length; ++i) {
+			if (a[i]) {
+				const msDiff = curDate.getTime() - a.obj.updated_at.getTime();
+				a[i].score += weights[i];
+				a[i].score += 1000 * (daysOld - msDiff / msInDay);
+				max = a[i].score > max ? a[i].score : max;
+			}
+		}
+		return max;
+	}
+
+	const keyWeightPairs = {
+		'name': 20000,
+		'job': 10000,
+		'location': 3000,
+		'short': 500,
+		'description': 100,
+	}
+
 	const sortOptions = {
-		keys: ['name', 'job', 'salary', 'location', 'short', 'description'],
+		keys: Object.keys(keyWeightPairs),
 		all: true,
 		limit: 20,
-		scoreFn: a => {
-			let max = -Infinity;
-			const weights: number[] = [20000, 10000, 2000, 3000, 500, 100];
-			for (let i = 0; i < weights.length; ++i) {
-				if (a[i]) {
-					a[i].score += weights[i];
-					max = a[i].score > max ? a[i].score : max;
-				}
-			}
-			return max;
-		},
+		scoreFn: (a) => getScore(a, Object.values(keyWeightPairs)),
 	};
+
 	const results: object = fuzzysort.go(search, jobBuffer, sortOptions);
 	for (let i = 0; i < results.length; ++i) {
 		results[i] = results[i].obj;
