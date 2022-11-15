@@ -21,7 +21,7 @@ export let job: Job;
 				{job.name}
 			</h3>
 			<p style="display: inline">{job.job} - ${job.salary} an hour</p>
-			<p style="float: right">Updated {getFormattedDate(job.updated_at)}</p>
+			<small class="updated-time">Updated {getFormattedDate(job.updated_at)}</small>
 		</header>
 		<ul>
 			{#each listToArray(job.short) as descLine}
@@ -52,5 +52,15 @@ dialog > article {
 .close {
 	border: none;
 	box-shadow: none;
+}
+.updated-time {
+	float: right;
+}
+@media only screen and (max-width: 500px) {
+	.updated-time {
+		margin-top: 2px;
+		display: block;
+		float: none;
+	}
 }
 </style>
