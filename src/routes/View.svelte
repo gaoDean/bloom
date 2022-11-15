@@ -58,7 +58,7 @@ $: displayJobs = getDisplayJobs(jobs, filters, search);
 {#each displayJobs as job}
 	<article>
 		<hgroup>
-			<h4 style="margin-bottom: 8px">{job.name}</h4>
+			<h3 style="margin-bottom: 8px">{job.name}</h3>
 			<p>{job.job} - ${job.salary} an hour</p>
 		</hgroup>
 		<ul>
@@ -116,6 +116,9 @@ ul > li {
 	}
 	ul > li {
 		font-weight: var(--font-weight);
+	}
+	hgroup > h3 {
+		font-size: 1.25rem;
 	}
 }
 </style>
