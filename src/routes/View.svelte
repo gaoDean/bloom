@@ -42,18 +42,18 @@ function getDisplayJobs(
 	}
 
 	const keyWeightPairs = {
-		'name': 20000,
-		'job': 10000,
-		'location': 3000,
-		'short': 500,
-		'description': 100,
-	}
+		name: 20000,
+		job: 10000,
+		location: 3000,
+		short: 500,
+		description: 100,
+	};
 
 	const sortOptions = {
 		keys: Object.keys(keyWeightPairs),
 		all: true,
 		limit: 20,
-		scoreFn: (a) => getScore(a, Object.values(keyWeightPairs)),
+		scoreFn: a => getScore(a, Object.values(keyWeightPairs)),
 	};
 
 	const results: object = fuzzysort.go(search, jobBuffer, sortOptions);
