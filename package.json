@@ -10,20 +10,16 @@
 		"test": "playwright test",
 		"check": "svelte-kit sync && svelte-check --fail-on-warnings --tsconfig ./tsconfig.json",
 		"flc": "yarn format && yarn lint && yarn check",
-		"format": "prettier --write --plugin-search-dir=. ./src/routes/**/*.{js,svelte,html,ts} ./src/lib/*.{js,svelte,html,ts} ./src/lib/server/**/*.{js,svelte,html,ts}",
-		"lint": "eslint --cache './src/routes/**/*.{ts,svelte}'",
-		"lint:fix": "eslint --cache --fix './src/routes/**/*.{ts,svelte}'"
+		"format": "prettier --write --plugin-search-dir=. ./src/routes/**/*.{js,svelte,html} ./src/lib/*.{js,svelte,html} ./src/lib/server/**/*.{js,svelte,html}",
+		"lint": "eslint --cache './src/routes/**/*.{js,svelte}'"
 	},
 	"devDependencies": {
-		"@playwright/test": "^1.27.1",
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",
-		"@typescript-eslint/eslint-plugin": "^5.27.0",
-		"@typescript-eslint/parser": "^5.27.0",
-		"eslint": "^8.16.0",
+		"eslint": "^8.27.0",
 		"eslint-config-airbnb-base": "^15.0.0",
-		"eslint-config-airbnb-typescript": "^17.0.0",
 		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-functional": "^4.4.1",
 		"eslint-plugin-import": "latest",
 		"eslint-plugin-svelte3": "^4.0.0",
 		"prettier": "^2.6.2",
@@ -32,8 +28,6 @@
 		"svelte": "^3.44.0",
 		"svelte-check": "^2.7.1",
 		"svelte-preprocess": "^4.10.6",
-		"tslib": "^2.3.1",
-		"typescript": "^4.7.4",
 		"vite": "^3.1.0"
 	},
 	"type": "module",

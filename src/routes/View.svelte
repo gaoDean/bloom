@@ -1,74 +1,56 @@
-<script lang="ts">
+<script>
 import fuzzysort from 'fuzzysort';
-import { type Job } from '$lib/dbJobTypes.js';
 import '$lib/jobDescription.css';
 import { listToArray, formatTime } from '$lib/jobDisplayFunctions.js';
-import { type Filter, passesFilters } from './filters.js';
+import { passesFilters } from './filters.js';
+import { map, filter, sort, pipe } from './functional.js';
 
-function getDisplayJobs(
-	allJobs: Job[],
-	filters: Filter[],
-	search: string,
-): Job[] {
-	const maxIters = 50;
-	const jobBuffer: Job[] = [];
-	const curDate = new Date();
-
-	for (let jobIndex = 0; jobIndex < allJobs.length; ++jobIndex) {
-		if (jobIndex >= maxIters) {
-			break;
-		}
-		if (passesFilters(allJobs[jobIndex], filters)) {
-			jobBuffer.push(allJobs[jobIndex]);
-		}
-	}
-	jobBuffer.sort((a: Job, b: Job) =>
-		a.updated_at.getTime() < b.updated_at.getTime() ? 1 : -1,
+const fzsort = (search, sortOptions) => functor =>
+	fuzzysort.go(search, functor, sortOptions);
+const getTimeWeight = (t1, t2) =>
+	1000 * (5 - (t1.getTime() - t2.getTime()) / (1000 * 60 * 60 * 24));
+const getScore = (weights, currentTime, updatedTime) => (max, val, index) => {
+	const weightedScore =
+		(val ? val.score : -Infinity) +
+		weights[index] +
+		getTimeWeight(currentTime, updatedTime);
+	return weightedScore > max ? weightedScore : max;
+};
+const getDisplayJobs = (jobs, filters, search, sortOptions) =>
+	pipe(
+		jobs,
+		filter(x => passesFilters(x, filters)),
+		sort((a, b) => (a.updated_at.getTime() < b.updated_at.getTime() ? 1 : -1)),
+		fzsort(search, sortOptions),
+		map(x => x.obj),
 	);
 
-	function getScore(a: object, weights: number[]): number {
-		const msInDay = 1000 * 60 * 60 * 24;
-		const daysOld = 5;
-		let max = -Infinity;
-		for (let i = 0; i < weights.length; ++i) {
-			if (a[i]) {
-				const msDiff = curDate.getTime() - a.obj.updated_at.getTime();
-				a[i].score += weights[i];
-				a[i].score += 1000 * (daysOld - msDiff / msInDay);
-				max = a[i].score > max ? a[i].score : max;
-			}
-		}
-		return max;
-	}
+const keyWeightPairs = {
+	name: 20000,
+	job: 25000,
+	location: 3000,
+	short: 500,
+	description: 100,
+};
 
-	const keyWeightPairs = {
-		name: 20000,
-		job: 25000,
-		location: 3000,
-		short: 500,
-		description: 100,
-	};
+const fzSortOptions = {
+	keys: Object.keys(keyWeightPairs),
+	all: true,
+	limit: 20,
+	scoreFn: a =>
+		a.reduce(
+			getScore(Object.values(keyWeightPairs), new Date(), a.obj.updated_at),
+		),
+};
 
-	const sortOptions = {
-		keys: Object.keys(keyWeightPairs),
-		all: true,
-		limit: 20,
-		scoreFn: a => getScore(a, Object.values(keyWeightPairs)),
-	};
+/* eslint-disable */
+export let search = '';
+export let jobs;
+export let selectedJob;
+export let filters;
 
-	const results: object = fuzzysort.go(search, jobBuffer, sortOptions);
-	for (let i = 0; i < results.length; ++i) {
-		results[i] = results[i].obj;
-	}
-	return results;
-}
-
-export let search: string = '';
-export let jobs: Job[];
-export let selectedJob: Job = undefined; // eslint-disable-line
-export let filters: Filter[];
-
-$: displayJobs = getDisplayJobs(jobs, filters, search);
+let displayJobs;
+$: displayJobs = getDisplayJobs(jobs, filters, search, fzSortOptions);
 </script>
 
 {#each displayJobs as job}
@@ -94,7 +76,7 @@ $: displayJobs = getDisplayJobs(jobs, filters, search);
 			<button class="button">Apply</button>
 			<button
 				class="button outline secondary button-info"
-				on:click={() => (selectedJob = job)}
+				on:click={(x = job) => (selectedJob = x)}
 			>
 				Info
 			</button>

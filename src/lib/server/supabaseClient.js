@@ -1,7 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { env } from '$env/dynamic/public';
 import { error as svelteError } from '@sveltejs/kit';
-import { promises as fsPromises, exists as pathExists, readFile } from 'fs';
 
 export const client = createClient(
 	env.PUBLIC_SUPABASE_URL,
@@ -14,43 +13,14 @@ export const client = createClient(
 // 	});
 // }
 
-function formatData(data: any) {
-	Object.values(data).forEach(row => {
+const formatData = data =>
+	data.map(row => {
 		row.inserted_at = new Date(row.inserted_at);
 		row.updated_at = new Date(row.updated_at);
+		return row;
 	});
-}
 
-async function writeTableTypes(tableName: string, data: any) {
-	if (!tableName || !data) {
-		return;
-	}
-	let buffer: string = 'export interface Job {\n';
-	Object.entries(data[0]).forEach(([key, value]) => {
-		buffer += `\t${key}: ${typeof value};\n`;
-	});
-	buffer += '}\n';
-	try {
-		const typesFilePath = `src/lib/dbJobTypes.ts`;
-		pathExists(typesFilePath, async exists => {
-			if (exists) {
-				if ((await fsPromises.readFile(typesFilePath)) != buffer) {
-					fsPromises.writeFile(typesFilePath, buffer);
-				}
-			}
-		});
-	} catch (err) {
-		const svelteError = {
-			status: 500,
-			body: {
-				message: err,
-			},
-		};
-		throw svelteError;
-	}
-}
-
-export async function getPost(table: string) {
+export const getPost = async table => {
 	try {
 		const { data, error, status } = await client.from(table).select('*');
 
@@ -61,9 +31,6 @@ export async function getPost(table: string) {
 
 		if (data) {
 			formatData(data);
-			// generates code for typescript interfaces
-			writeTableTypes(table, data);
-
 			return data;
 		}
 	} catch (error) {
@@ -73,4 +40,4 @@ export async function getPost(table: string) {
 			`Database error ${error.status}: ${error.body.message}`,
 		);
 	}
-}
+};

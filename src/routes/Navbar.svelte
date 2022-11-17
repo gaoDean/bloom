@@ -1,9 +1,10 @@
-<script lang="ts">
+<script>
 import logo from '$lib/img/logo.svg';
 import profile from '$lib/img/profile.svg';
 
 const rootUrl = 'https://bloomjobs.live';
 
+/* eslint-disable */
 export let search;
 </script>
 

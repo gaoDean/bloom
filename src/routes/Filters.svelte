@@ -1,31 +1,22 @@
-<script lang="ts">
-import { type Filter, deepClone } from './filters.js';
+<script>
+import { deepClone } from './filters.js';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function optionChanged(
-	filters: Filter[],
-	defaultFilters: Filter[],
-	lastChangedFilterIndex: number,
-) {
-	if (lastChangedFilterIndex >= 0) {
-		if (
-			JSON.stringify(filters[lastChangedFilterIndex].list) !==
-			JSON.stringify(defaultFilters[lastChangedFilterIndex].list)
-		) {
-			filters[lastChangedFilterIndex].active = 'true';
-		} else {
-			filters[lastChangedFilterIndex].active = 'false';
-		}
-	}
-}
+const optionChanged = (filters, defaultFilters) =>
+	JSON.stringify(filters.list) !== JSON.stringify(defaultFilters.list)
+		? 'true'
+		: 'false';
 
-export let filters: Filter[];
+/* eslint-disable */
+export let filters;
+const defaultFilters = deepClone(filters);
+let lastChangedFilterIndex = -1;
 
-// create a complete clone
-const defaultFilters: Filter[] = deepClone(filters);
-let lastChangedFilterIndex: number = -1;
-
-$: optionChanged(filters, defaultFilters, lastChangedFilterIndex);
+$: lastChangedFilterIndex >= 0
+	? (filters[lastChangedFilterIndex].active = optionChanged(
+			filters[lastChangedFilterIndex],
+			defaultFilters[lastChangedFilterIndex],
+	  ))
+	: null;
 </script>
 
 <div class="filter-container">
@@ -45,9 +36,7 @@ $: optionChanged(filters, defaultFilters, lastChangedFilterIndex);
 								{#if filter.type === 'checkbox'}
 									<input
 										type="checkbox"
-										on:change={() => {
-											lastChangedFilterIndex = filterIndex;
-										}}
+										on:change={() => (lastChangedFilterIndex = filterIndex)}
 										bind:checked={opt.checked}
 									/>{opt.text}
 								{:else}
