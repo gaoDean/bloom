@@ -3,9 +3,8 @@ import { go as fuzzysort } from 'fuzzysort';
 import '$lib/jobDescription.css';
 import { listToArray, formatTime } from '$lib/jobDisplayFunctions.js';
 import { passesFilters } from './filters.js';
-import { map, filter, pipe } from './functional.js';
+import { map, filter, sort, pipe } from './functional.js';
 
-const sort = f => functor => functor.sort(f);
 const fzsort = (search, sortOptions) => functor =>
 	fuzzysort(search, functor, sortOptions);
 const getTimeWeight = (t1, t2) =>
@@ -44,11 +43,13 @@ const fzSortOptions = {
 		),
 };
 
+/* eslint-disable */
 export let search = '';
 export let jobs;
-export let selectedJob = undefined; // eslint-disable-line
+export let selectedJob;
 export let filters;
 
+let displayJobs;
 $: displayJobs = getDisplayJobs(jobs, filters, search, fzSortOptions);
 </script>
 
@@ -75,7 +76,7 @@ $: displayJobs = getDisplayJobs(jobs, filters, search, fzSortOptions);
 			<button class="button">Apply</button>
 			<button
 				class="button outline secondary button-info"
-				on:click={() => (selectedJob = job)}
+				on:click={(x = job) => (selectedJob = x)}
 			>
 				Info
 			</button>

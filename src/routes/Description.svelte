@@ -5,6 +5,7 @@ import '$lib/jobDescription.css';
 const getFormattedDate = date =>
 	`${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`;
 
+/* eslint-disable */
 export let job;
 </script>
 

@@ -5,14 +5,15 @@ import View from './View.svelte';
 import Description from './Description.svelte';
 import { filters as immutableFilters } from './filters.js';
 
-let filters = immutableFilters;
+let filters = immutableFilters; // eslint-disable-line
 
-/** @type {import('./$types').PageData} */
+/* eslint-disable */
+let selectedJob;
+let search;
+
 export let data;
 
 const jobs = data.post;
-let selectedJob;
-let search;
 </script>
 
 {#if selectedJob}

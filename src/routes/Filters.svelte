@@ -6,9 +6,10 @@ const optionChanged = (filters, defaultFilters) =>
 		? 'true'
 		: 'false';
 
-export let filters;
 
-// create a complete clone
+
+/* eslint-disable */
+export let filters;
 const defaultFilters = deepClone(filters);
 let lastChangedFilterIndex = -1;
 
@@ -37,9 +38,7 @@ $: lastChangedFilterIndex >= 0
 								{#if filter.type === 'checkbox'}
 									<input
 										type="checkbox"
-										on:change={() => {
-											lastChangedFilterIndex = filterIndex;
-										}}
+										on:change={() => (lastChangedFilterIndex = filterIndex)}
 										bind:checked={opt.checked}
 									/>{opt.text}
 								{:else}

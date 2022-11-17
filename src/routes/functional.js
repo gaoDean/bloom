@@ -9,4 +9,5 @@ export const some 		= f => functor => functor.some(f);
 export const includes = f => functor => functor.includes(f);
 export const forEach 	= f => functor => functor.forEach(f);
 export const reduce 	= f => functor => functor.reduce(f);
+export const sort 		= f => functor => [...functor].sort(f);
 export const pipe = (x0, ...funcs) => funcs.reduce((x, f) => f(x), x0);

@@ -39,15 +39,8 @@ export const filters = [
 			{ text: 'Volunteer', checked: false },
 		],
 		checker: (salary, activeChecks) =>
-			activeChecks.some(check => {
-				if (salary > 0 && check === 'Payed') {
-					return true;
-				}
-				if (salary === 0 && check === 'Volunteer') {
-					return true;
-				}
-				return false;
-			}),
+			activeChecks.some(check =>
+				(salary > 0 && check === 'Payed') || (salary === 0 && check === 'Volunteer'))
 	},
 ];
 
@@ -57,10 +50,10 @@ const getChecks = filterList =>
 		filter(check => check.checked),
 		map(x => x.text),
 	);
-const applyFilter = (job, filter) =>
-	getChecks(filter.list)
-		? filter.checker(job[filter.id], getChecks(filter.list))
+const applyFilter = (job, fil) =>
+	getChecks(fil.list)
+		? fil.checker(job[fil.id], getChecks(fil.list))
 		: false;
 export const passesFilters = (job, runtimeFilters) =>
-	runtimeFilters.every(filter => applyFilter(job, filter));
+	runtimeFilters.every(fil => applyFilter(job, fil));
 export const deepClone = filterArray => JSON.parse(JSON.stringify(filterArray));
