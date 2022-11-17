@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 import { listToArray, formatTime } from '$lib/jobDisplayFunctions.js';
 import '$lib/jobDescription.css';
 

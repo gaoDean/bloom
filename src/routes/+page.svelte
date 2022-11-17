@@ -1,19 +1,18 @@
-<script lang="ts">
+<script>
 import Navbar from './Navbar.svelte';
 import Filters from './Filters.svelte';
 import View from './View.svelte';
 import Description from './Description.svelte';
-import { type Job } from '$lib/dbJobTypes.ts'; // eslint-disable-line
 import { filters as immutableFilters } from './filters.js';
 
 let filters = immutableFilters;
 
 /** @type {import('./$types').PageData} */
-export let data: { post: Job[] };
+export let data;
 
-const jobs: Job[] = data.post;
-let selectedJob: Job;
-let search: string;
+const jobs = data.post;
+let selectedJob;
+let search;
 </script>
 
 {#if selectedJob}
