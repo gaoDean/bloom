@@ -1,12 +1,11 @@
 <script lang="ts">
 import { type Filter, deepClone } from './filters.js';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function optionChanged(
+const optionChanged = (
 	filters: Filter[],
 	defaultFilters: Filter[],
 	lastChangedFilterIndex: number,
-) {
+) => {
 	if (lastChangedFilterIndex >= 0) {
 		if (
 			JSON.stringify(filters[lastChangedFilterIndex].list) !==
@@ -17,7 +16,7 @@ function optionChanged(
 			filters[lastChangedFilterIndex].active = 'false';
 		}
 	}
-}
+};
 
 export let filters: Filter[];
 
