@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 import { go as fuzzysort } from 'fuzzysort';
 import '$lib/jobDescription.css';
 import { listToArray, formatTime } from '$lib/jobDisplayFunctions.js';

@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 import { deepClone } from './filters.js';
 
 const optionChanged = (filters, defaultFilters) =>

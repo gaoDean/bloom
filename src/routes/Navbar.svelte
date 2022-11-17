@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 import logo from '$lib/img/logo.svg';
 import profile from '$lib/img/profile.svg';
 
