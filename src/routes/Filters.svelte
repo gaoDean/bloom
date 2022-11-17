@@ -1,30 +1,23 @@
 <script lang="ts">
-import { type Filter, deepClone } from './filters.js';
+import { deepClone } from './filters.js';
 
-const optionChanged = (
-	filters: Filter[],
-	defaultFilters: Filter[],
-	lastChangedFilterIndex: number,
-) => {
-	if (lastChangedFilterIndex >= 0) {
-		if (
-			JSON.stringify(filters[lastChangedFilterIndex].list) !==
-			JSON.stringify(defaultFilters[lastChangedFilterIndex].list)
-		) {
-			filters[lastChangedFilterIndex].active = 'true';
-		} else {
-			filters[lastChangedFilterIndex].active = 'false';
-		}
-	}
-};
+const optionChanged = (filters, defaultFilters) =>
+	JSON.stringify(filters.list) !== JSON.stringify(defaultFilters.list)
+		? 'true'
+		: 'false';
 
-export let filters: Filter[];
+export let filters;
 
 // create a complete clone
-const defaultFilters: Filter[] = deepClone(filters);
-let lastChangedFilterIndex: number = -1;
+const defaultFilters = deepClone(filters);
+let lastChangedFilterIndex = -1;
 
-$: optionChanged(filters, defaultFilters, lastChangedFilterIndex);
+$: lastChangedFilterIndex >= 0
+	? (filters[lastChangedFilterIndex].active = optionChanged(
+			filters[lastChangedFilterIndex],
+			defaultFilters[lastChangedFilterIndex],
+	  ))
+	: null;
 </script>
 
 <div class="filter-container">
