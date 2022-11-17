@@ -1,13 +1,11 @@
 <script lang="ts">
-import { type Job } from '$lib/dbJobTypes.js';
 import { listToArray, formatTime } from '$lib/jobDisplayFunctions.js';
 import '$lib/jobDescription.css';
 
-function getFormattedDate(date: Date): Date {
-	return `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`;
-}
+const getFormattedDate = date =>
+	`${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`;
 
-export let job: Job;
+export let job;
 </script>
 
 <dialog open>

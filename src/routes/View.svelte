@@ -19,15 +19,14 @@ const getScore = (weights, currentTime, updatedTime) => (max, val, index) => {
 		getTimeWeight(currentTime, updatedTime);
 	return weightedScore > max ? weightedScore : max;
 };
-const getDisplayJobs = (jobs, filters, search, sortOptions) => {
-	return pipe(
+const getDisplayJobs = (jobs, filters, search, sortOptions) =>
+	pipe(
 		jobs,
 		filter(x => passesFilters(x, filters)),
 		sort((a, b) => (a.updated_at.getTime() < b.updated_at.getTime() ? 1 : -1)),
 		fzsort(search, sortOptions),
 		map(x => x.obj),
 	);
-};
 
 const keyWeightPairs = {
 	name: 20000,
