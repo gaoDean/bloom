@@ -13,14 +13,14 @@ export const client = createClient(
 // 	});
 // }
 
-const formatData = (data) =>
+const formatData = data =>
 	data.map(row => {
 		row.inserted_at = new Date(row.inserted_at);
 		row.updated_at = new Date(row.updated_at);
 		return row;
-	})
+	});
 
-export const getPost = async (table) => {
+export const getPost = async table => {
 	try {
 		const { data, error, status } = await client.from(table).select('*');
 
@@ -40,4 +40,4 @@ export const getPost = async (table) => {
 			`Database error ${error.status}: ${error.body.message}`,
 		);
 	}
-}
+};

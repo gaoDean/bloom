@@ -6,8 +6,6 @@ const optionChanged = (filters, defaultFilters) =>
 		? 'true'
 		: 'false';
 
-
-
 /* eslint-disable */
 export let filters;
 const defaultFilters = deepClone(filters);

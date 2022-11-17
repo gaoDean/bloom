@@ -1,12 +1,12 @@
 <script>
-import { go as fuzzysort } from 'fuzzysort';
+import fuzzysort from 'fuzzysort';
 import '$lib/jobDescription.css';
 import { listToArray, formatTime } from '$lib/jobDisplayFunctions.js';
 import { passesFilters } from './filters.js';
 import { map, filter, sort, pipe } from './functional.js';
 
 const fzsort = (search, sortOptions) => functor =>
-	fuzzysort(search, functor, sortOptions);
+	fuzzysort.go(search, functor, sortOptions);
 const getTimeWeight = (t1, t2) =>
 	1000 * (5 - (t1.getTime() - t2.getTime()) / (1000 * 60 * 60 * 24));
 const getScore = (weights, currentTime, updatedTime) => (max, val, index) => {
