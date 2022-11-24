@@ -11,7 +11,7 @@
 		"check": "svelte-kit sync && svelte-check --fail-on-warnings --tsconfig ./tsconfig.json",
 		"flc": "yarn format && yarn lint && yarn check",
 		"format": "prettier --write --plugin-search-dir=. ./src/routes/**/*.{js,svelte,html} ./src/lib/*.{js,svelte,html} ./src/lib/server/**/*.{js,svelte,html}",
-		"lint": "eslint --cache './src/routes/**/*.{js,svelte}'"
+		"lint": "eslint --cache ./src/routes/**/*.{js,svelte,html} ./src/lib/*.{js,svelte,html} ./src/lib/server/**/*.{js,svelte,html}"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "next",
@@ -33,6 +33,7 @@
 	"type": "module",
 	"dependencies": {
 		"@supabase/supabase-js": "2",
-		"fuzzysort": "^2.0.3"
+		"fuzzysort": "^2.0.3",
+		"ramda": "^0.28.0"
 	}
 }

@@ -76,7 +76,7 @@ $: displayJobs = getDisplayJobs(jobs, filters, search, fzSortOptions);
 			<button class="button">Apply</button>
 			<button
 				class="button outline secondary button-info"
-				on:click={(x = job) => (selectedJob = x)}
+				on:click={() => (selectedJob = job)}
 			>
 				Info
 			</button>

@@ -40,6 +40,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["fuzzysort", "npm:2.0.3"],\
             ["prettier", "npm:2.7.1"],\
             ["prettier-plugin-svelte", "virtual:94da2977de1030ff3b75d307d3a1d89c1609cff81e8e3f58038d78564bad2068c3113b00cd523c51e42a0c925dc28b3194de9f4511e8cfc7300da84ef5c6cd39#npm:2.8.0"],\
+            ["ramda", "npm:0.28.0"],\
             ["sass", "npm:1.55.0"],\
             ["svelte", "npm:3.52.0"],\
             ["svelte-check", "virtual:94da2977de1030ff3b75d307d3a1d89c1609cff81e8e3f58038d78564bad2068c3113b00cd523c51e42a0c925dc28b3194de9f4511e8cfc7300da84ef5c6cd39#npm:2.9.2"],\
@@ -873,6 +874,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["fuzzysort", "npm:2.0.3"],\
             ["prettier", "npm:2.7.1"],\
             ["prettier-plugin-svelte", "virtual:94da2977de1030ff3b75d307d3a1d89c1609cff81e8e3f58038d78564bad2068c3113b00cd523c51e42a0c925dc28b3194de9f4511e8cfc7300da84ef5c6cd39#npm:2.8.0"],\
+            ["ramda", "npm:0.28.0"],\
             ["sass", "npm:1.55.0"],\
             ["svelte", "npm:3.52.0"],\
             ["svelte-check", "virtual:94da2977de1030ff3b75d307d3a1d89c1609cff81e8e3f58038d78564bad2068c3113b00cd523c51e42a0c925dc28b3194de9f4511e8cfc7300da84ef5c6cd39#npm:2.9.2"],\
@@ -3600,6 +3602,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/queue-microtask-npm-1.2.3-fcc98e4e2d-b676f8c040.zip/node_modules/queue-microtask/",\
           "packageDependencies": [\
             ["queue-microtask", "npm:1.2.3"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["ramda", [\
+        ["npm:0.28.0", {\
+          "packageLocation": "./.yarn/cache/ramda-npm-0.28.0-6a5fe8f6cc-44ea6e5010.zip/node_modules/ramda/",\
+          "packageDependencies": [\
+            ["ramda", "npm:0.28.0"]\
           ],\
           "linkType": "HARD"\
         }]\

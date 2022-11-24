@@ -7,12 +7,12 @@ module.exports = {
 	extends: [
 		'eslint:recommended',
 		'airbnb-base',
-		'plugin:functional/external-recommended',
-		'plugin:functional/recommended',
-		'plugin:functional/stylistic',
+		// 'plugin:functional/external-recommended',
+		// 'plugin:functional/recommended',
+		// 'plugin:functional/stylistic',
 		'prettier'
 	],
-	plugins: ['svelte3', 'functional'],
+	plugins: ['svelte3'],
 	ignorePatterns: ['*.cjs'],
 	overrides: [{ files: ['*.svelte'], processor: 'svelte3/svelte3' }],
 	env: {
