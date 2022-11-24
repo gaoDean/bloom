@@ -12,7 +12,7 @@ const formatData = data =>
 		...row,
 		inserted_at: new Date(row.inserted_at),
 		updated_at: new Date(row.updated_at),
-	}))
+	}));
 
 export const getPost = async table => {
 	try {
