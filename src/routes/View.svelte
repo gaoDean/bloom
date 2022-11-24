@@ -56,7 +56,10 @@ $: displayJobs = getDisplayJobs(jobs, filters, search, fzSortOptions);
 {#each displayJobs as job}
 	<article>
 		<hgroup>
-			<h3 style="margin-bottom: 8px">{job.name}</h3>
+			{#if job.verified}
+				<span class="verified" />
+			{/if}
+			<h3 style="display: inline; margin-bottom: 8px">{job.name}</h3>
 			<p>{job.job} - ${job.salary} an hour</p>
 		</hgroup>
 		<ul>
@@ -85,6 +88,19 @@ $: displayJobs = getDisplayJobs(jobs, filters, search, fzSortOptions);
 {/each}
 
 <style>
+.verified {
+	background: var(--primary);
+	background-image: var(--icon-checkbox);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 70%;
+	border-radius: 50%;
+	vertical-align: -3px;
+	margin-right: 2px;
+	display: inline-block;
+	height: 20px;
+	width: 20px;
+}
 article {
 	padding-top: 1.2rem;
 	padding-bottom: 1rem;
