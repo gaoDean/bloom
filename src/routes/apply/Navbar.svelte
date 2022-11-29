@@ -15,11 +15,6 @@ const rootUrl = 'https://bloomjobs.live';
 
 		<li><a href={rootUrl} class="secondary"><strong>Bloom</strong></a></li>
 	</ul>
-	<ul style="flex: 1; justify-content: center">
-		<li class="title-container">
-			<h2 class="title">Corton's Cafe</h2>
-		</li>
-	</ul>
 	<ul class="profile">
 		<li>
 			<a href={rootUrl} style="padding: 8px"

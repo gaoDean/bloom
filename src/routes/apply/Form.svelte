@@ -2,89 +2,39 @@
 import '$lib/jobDescription.css';
 </script>
 
+<h2 style="margin-bottom: 1rem">Register your business with Bloom</h2>
 <form>
-	<article>
-		<h1 style="text-align: center">Job Listing</h1>
 		<label for="name">
-			Business name
-			<input type="text" placeholder="Name" required />
+			<input type="text" placeholder="Business Name" required />
 		</label>
-
-		<label for="job">
-			Job
-			<input type="text" placeholder="Working position" required />
-		</label>
-
-		<label for="salary">
-			Salary per hour
-			<input type="number" placeholder="e.g: 24" />
-		</label>
-
-		<div class="grid">
-			<label for="start">
-				Estimated shift starting time
-				<input type="time" placeholder="" />
-			</label>
-			<label for="end">
-				Estimated shift ending time
-				<input type="time" placeholder="" />
-			</label>
-		</div>
-
-		<label for="days">
-			Available working days
-			<input
-				type="text"
-				placeholder="Comma delimited e.g: Monday, Friday, Sunday"
-			/>
-		</label>
-
 		<label for="abn">
-			Business Registration Number
-			<input type="number" placeholder="Australian Business Number" required />
+			<input type="number" placeholder="Australian Business Registration Number" required />
 			<small>This will be checked with the Australian Business Register</small>
 		</label>
 
 		<label for="location">
-			Location
 			<input type="text" placeholder="Business location" required />
 		</label>
 
 		<div class="grid">
 			<label for="email">
-				Email address
 				<input type="email" placeholder="Email address" required />
 			</label>
 
 			<label for="contact-other">
-				Other contact details (optional)
-				<input type="email" placeholder="Contacts" />
+				<input type="email" placeholder="Other contact details (optional)" />
 			</label>
 		</div>
 
-		<label for="short">
-			Short description about the job
-			<textarea
-				rows="5"
-				placeholder="List format e.g:
-- You will do ...
-- Requirements are ..."
-				maxlength="100"
-				required
-			/>
-		</label>
-
 		<label for="description">
-			Full description of your business and the job
+
 			<textarea
 				rows="7"
-				placeholder="Any format e.g:
-At xyz, we do ..."
+				placeholder="A description of your business to go on the listings"
 				maxlength="2000"
 				required
 			/>
 		</label>
-	</article>
 
 	<div class="grid">
 		<article>
@@ -102,6 +52,7 @@ At xyz, we do ..."
 				</ul>
 				<li>Reports of viewers and viewing time</li>
 				<li>Will appear in user job recommendations</li>
+				<li>Number of listings limited to 2</li>
 			</ul>
 			<button
 				type="submit"
@@ -114,6 +65,7 @@ At xyz, we do ..."
 			<p>All the benefits of the General Plan, plus a few extra perks:</p>
 			<ul>
 				<li>Attract users with a company logo</li>
+				<li>Unlimited job listings</li>
 				<li>Priority listings on search results</li>
 				<li>Reports of viewers and viewing time</li>
 				<li>Will appear in user job recommendations</li>
@@ -123,6 +75,5 @@ At xyz, we do ..."
 				class="button outline"
 				style="margin: auto; margin-top: 2rem">Premium</button
 			>
-		</article>
 	</div>
 </form>
