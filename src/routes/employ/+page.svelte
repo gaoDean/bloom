@@ -54,6 +54,7 @@ let newListing = false;
 	<div class="grid">
 		<article style="opacity: 0.6">
 			<h4>General Plan (Currently on)</h4>
+			<p>Price: $80 per month</p>
 			<ul>
 				<li>Advertise specific positions</li>
 				<li>Your job listing will display:</li>
@@ -76,6 +77,7 @@ let newListing = false;
 		</article>
 		<article>
 			<h4>Premium Plan</h4>
+			<p>Price: $180 per month</p>
 			<p>All the benefits of the General Plan, plus a few extra perks:</p>
 			<ul>
 				<li>Attract users with a company logo</li>

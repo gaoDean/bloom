@@ -42,6 +42,7 @@ import '$lib/jobDescription.css';
 	<div class="grid">
 		<article>
 			<h4>General Plan</h4>
+			<p>Price: $80 per month</p>
 			<ul>
 				<li>Advertise specific positions</li>
 				<li>Your job listing will display:</li>
@@ -65,6 +66,7 @@ import '$lib/jobDescription.css';
 		</article>
 		<article>
 			<h4>Premium Plan</h4>
+			<p>Price: $180 per month</p>
 			<p>All the benefits of the General Plan, plus a few extra perks:</p>
 			<ul>
 				<li>Attract users with a company logo</li>
