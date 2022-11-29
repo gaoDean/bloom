@@ -8,7 +8,8 @@ let newListing = false;
 <Navbar />
 <main class="container">
 	<p style="text-align: center; margin-bottom: 0px">
-		One job listing left! Upgrade to the <em>Premium</em> plan to have unlimited listings!
+		One job listing left! Upgrade to the <em>Premium</em> plan to have unlimited
+		listings!
 	</p>
 	<button
 		class="button outline"
@@ -48,7 +49,7 @@ let newListing = false;
 			</button>
 		</div>
 	</article>
-	<hr>
+	<hr />
 	<h2 style="margin-bottom: 1rem; text-align: center">Your plan</h2>
 	<div class="grid">
 		<article style="opacity: 0.6">
@@ -110,9 +111,6 @@ hgroup > p {
 	margin-left: 1rem;
 }
 @media only screen and (max-width: 500px) {
-	.long-desc {
-		display: none;
-	}
 	ul > li {
 		font-weight: var(--font-weight);
 	}

@@ -1,6 +1,7 @@
 <script>
 import '$lib/jobDescription.css';
 
+/* eslint-disable */
 export let newListing;
 </script>
 
@@ -57,10 +58,6 @@ export let newListing;
 </form>
 
 <style>
-dialog {
-	overscroll-behavior: none;
-	overflow-y: scroll;
-}
 .close {
 	border: none;
 	box-shadow: none;

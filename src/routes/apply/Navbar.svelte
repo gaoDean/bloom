@@ -28,10 +28,6 @@ const rootUrl = 'https://bloomjobs.live';
 </nav>
 
 <style>
-.title {
-	margin-bottom: 0px;
-}
-
 @media only screen and (max-width: 500px) {
 	nav > .logo {
 		display: none;
@@ -41,13 +37,6 @@ const rootUrl = 'https://bloomjobs.live';
 		margin-top: calc(0.25 * var(--nav-element-spacing-vertical));
 		position: absolute;
 		right: 21px;
-	}
-
-	.title-container {
-		width: 100%;
-		padding-left: 0px;
-		padding-right: 0px;
-		padding-bottom: 8px;
 	}
 }
 </style>

@@ -4,37 +4,40 @@ import '$lib/jobDescription.css';
 
 <h2 style="margin-bottom: 1rem">Register your business with Bloom</h2>
 <form>
-		<label for="name">
-			<input type="text" placeholder="Business Name" required />
+	<label for="name">
+		<input type="text" placeholder="Business Name" required />
+	</label>
+	<label for="abn">
+		<input
+			type="number"
+			placeholder="Australian Business Registration Number"
+			required
+		/>
+		<small>This will be checked with the Australian Business Register</small>
+	</label>
+
+	<label for="location">
+		<input type="text" placeholder="Business location" required />
+	</label>
+
+	<div class="grid">
+		<label for="email">
+			<input type="email" placeholder="Email address" required />
 		</label>
-		<label for="abn">
-			<input type="number" placeholder="Australian Business Registration Number" required />
-			<small>This will be checked with the Australian Business Register</small>
+
+		<label for="contact-other">
+			<input type="email" placeholder="Other contact details (optional)" />
 		</label>
+	</div>
 
-		<label for="location">
-			<input type="text" placeholder="Business location" required />
-		</label>
-
-		<div class="grid">
-			<label for="email">
-				<input type="email" placeholder="Email address" required />
-			</label>
-
-			<label for="contact-other">
-				<input type="email" placeholder="Other contact details (optional)" />
-			</label>
-		</div>
-
-		<label for="description">
-
-			<textarea
-				rows="7"
-				placeholder="A description of your business to go on the listings"
-				maxlength="2000"
-				required
-			/>
-		</label>
+	<label for="description">
+		<textarea
+			rows="7"
+			placeholder="A description of your business to go on the listings"
+			maxlength="2000"
+			required
+		/>
+	</label>
 
 	<div class="grid">
 		<article>
@@ -75,5 +78,6 @@ import '$lib/jobDescription.css';
 				class="button outline"
 				style="margin: auto; margin-top: 2rem">Premium</button
 			>
+		</article>
 	</div>
 </form>
