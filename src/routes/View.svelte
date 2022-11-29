@@ -95,7 +95,7 @@ $: displayJobs = getDisplayJobs(jobs, filters, search, fzSortOptions);
 	background-position: center;
 	background-size: 70%;
 	border-radius: 50%;
-	vertical-align: -3px;
+	vertical-align: 0px;
 	margin-right: 2px;
 	display: inline-block;
 	height: 20px;

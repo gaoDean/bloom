@@ -15,11 +15,6 @@ const rootUrl = 'https://bloomjobs.live';
 
 		<li><a href={rootUrl} class="secondary"><strong>Bloom</strong></a></li>
 	</ul>
-	<ul style="flex: 1; justify-content: center">
-		<li class="title-container">
-			<h2 class="title">Corton's Cafe</h2>
-		</li>
-	</ul>
 	<ul class="profile">
 		<li>
 			<a href={rootUrl} style="padding: 8px"
@@ -33,10 +28,6 @@ const rootUrl = 'https://bloomjobs.live';
 </nav>
 
 <style>
-.title {
-	margin-bottom: 0px;
-}
-
 @media only screen and (max-width: 500px) {
 	nav > .logo {
 		display: none;
@@ -46,13 +37,6 @@ const rootUrl = 'https://bloomjobs.live';
 		margin-top: calc(0.25 * var(--nav-element-spacing-vertical));
 		position: absolute;
 		right: 21px;
-	}
-
-	.title-container {
-		width: 100%;
-		padding-left: 0px;
-		padding-right: 0px;
-		padding-bottom: 8px;
 	}
 }
 </style>
